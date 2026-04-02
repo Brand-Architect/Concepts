@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caribe Coffee Co. — Brand Identity Concept</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#1B3A1F',
+                            cream: '#F5F0E8',
+                            brown: '#8B6343',
+                            gold: '#B8960C',
+                            dark: '#0D1F10',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ROBUST GOLD LOGO TECHNIQUE (100% RELIABLE) */
+        .gold-logo {
+            background-color: #B8960C;
+            -webkit-mask-image: url('https://i.ibb.co/XkGLG37g/Caribe-Coffee-logo-3.png');
+            mask-image: url('https://i.ibb.co/XkGLG37g/Caribe-Coffee-logo-3.png');
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            display: inline-block;
+        }
+
+        /* Scroll Indicator */
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, #8B6343, transparent);
+            animation: scrollPulse 2s infinite;
+        }
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Global Styles */
+        html { scroll-behavior: smooth; }
+        body { background-color: #F5F0E8; color: #1B3A1F; margin: 0; }
+        
+        /* Interactive Swatches */
+        .swatch-group:hover .swatch-item { flex: 1; }
+        .swatch-item:hover { flex: 2.5 !important; }
+    </style>
+</head>
+<body class="font-sans selection:bg-brand-gold selection:text-brand-dark">
+
+    <!-- 1. HERO SECTION -->
+    <section class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-brand-dark px-10 py-20 text-center">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,rgba(27,58,31,0.6)_0%,transparent_70%),radial-gradient(ellipse_at_20%_80%,rgba(139,99,67,0.2)_0%,transparent_60%)]"></div>
+        
+        <p class="reveal mb-14 text-[0.65rem] font-medium uppercase tracking-[0.35em] text-brand-brown">Brand Architect · Concept Proposal · Caribe Coffee Co.</p>
+        
+        <!-- ROBUST GOLD LOGO -->
+        <div class="reveal gold-logo w-[min(520px,80vw)] aspect-[520/200] drop-shadow-[0_20px_60px_rgba(0,0,0,0.6)]" style="transition-delay: 0.2s;"></div>
+        
+        <div class="reveal mx-auto my-14 h-[60px] w-px bg-gradient-to-b from-transparent via-brand-brown to-transparent" style="transition-delay: 0.4s;"></div>
+        
+        <p class="reveal max-w-[480px] font-serif text-[clamp(1.3rem,2.5vw,1.8rem)] font-light italic leading-relaxed text-brand-cream" style="transition-delay: 0.6s;">
+            A craft roastery with a story worth telling — and an identity worthy of it.
+        </p>
+        
+        <p class="reveal mt-7 text-[0.65rem] uppercase tracking-[0.3em] text-brand-cream/40" style="transition-delay: 0.8s;">Where Brands Are Built with Purpose</p>
+        
+        <div class="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+            <span class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/30">Explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- 2. CRITIQUE SECTION -->
+    <section class="mx-auto max-w-[1100px] px-10 py-24">
+        <div class="reveal">
+            <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Opportunity</p>
+            <h2 class="mb-12 font-serif text-[clamp(2rem,4vw,3rem)] leading-[1.15] text-brand-green">
+                A brand with <em class="italic text-brand-brown">extraordinary</em> provenance — and an identity that doesn't yet reflect it.
+            </h2>
+            <div class="mb-10 h-px w-10 bg-brand-brown"></div>
+            <p class="max-w-[620px] font-serif text-[1.15rem] font-light leading-relaxed text-brand-green/75">
+                Caribe Coffee Co. roasts directly from Honduran family farms. They turned down Peter Jones on Dragon's Den to stay true to their vision. They have 30,000 loyal customers and a genuine origin story. The brand they show the world should be equal to that story.
+            </p>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+            <div class="reveal relative overflow-hidden p-11 text-brand-cream bg-brand-green">
+                <div class="absolute left-0 top-0 h-full w-[3px] bg-brand-brown"></div>
+                <span class="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-cream/5 pointer-events-none">01</span>
+                <p class="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">The Existing Mark</p>
+                <p class="font-serif text-[1.15rem] font-light leading-relaxed text-brand-cream/85">Their current logo is a palm tree, which has nothing to do with coffee. Coffee does not come from palm trees. It is a totally illogical logo design that costs the mark its authority before it even begins.</p>
+            </div>
+            <div class="reveal relative overflow-hidden p-11 text-brand-cream bg-[#152D18]">
+                <div class="absolute left-0 top-0 h-full w-[3px] bg-brand-brown"></div>
+                <span class="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-cream/5 pointer-events-none">02</span>
+                <p class="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">The Homepage</p>
+                <p class="font-serif text-[1.15rem] font-light leading-relaxed text-brand-cream/85">The Dragon's Den appearance leads every page. A premium roastery shouldn't open with a television credential — it should open with coffee.</p>
+            </div>
+            <div class="reveal relative overflow-hidden p-11 text-brand-cream bg-[#102413]">
+                <div class="absolute left-0 top-0 h-full w-[3px] bg-brand-brown"></div>
+                <span class="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-cream/5 pointer-events-none">03</span>
+                <p class="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">The Product Imagery</p>
+                <p class="font-serif text-[1.15rem] font-light leading-relaxed text-brand-cream/85">AI-generated packaging imagery is inconsistent and at odds with the handcrafted story. The quality of the coffee isn't in question. The quality of how it's presented is.</p>
+            </div>
+            <div class="reveal relative overflow-hidden p-11 text-brand-cream bg-[#0B1B0D]">
+                <div class="absolute left-0 top-0 h-full w-[3px] bg-brand-brown"></div>
+                <span class="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-cream/5 pointer-events-none">04</span>
+                <p class="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">The Missed Opportunity</p>
+                <p class="font-serif text-[1.15rem] font-light leading-relaxed text-brand-cream/85">Direct from Honduran family farms. Microlot single estates. SHG grading. These are premium signals buried beneath discount banners.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. STORY SECTION -->
+    <section class="bg-brand-green px-10 py-32 text-brand-cream">
+        <div class="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-20 md:grid-cols-2">
+            <div class="flex flex-col gap-10">
+                <div class="reveal border-l border-brand-cream/20 pl-7">
+                    <div class="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">30k</div>
+                    <div class="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Loyal customers — and counting</div>
+                </div>
+                <div class="reveal border-l border-brand-cream/20 pl-7">
+                    <div class="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">2</div>
+                    <div class="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Roasteries — UK & Cayman Islands</div>
+                </div>
+                <div class="reveal border-l border-brand-cream/20 pl-7">
+                    <div class="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">HN</div>
+                    <div class="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Direct from Honduran family farms</div>
+                </div>
+            </div>
+
+            <div class="reveal font-serif text-[1.2rem] font-light leading-relaxed text-brand-cream/85">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Story Beneath the Brand</p>
+                <p class="mb-6">
+                    Caribe began at a market table in Morpeth. It grew through the integrity of what was in the bag. <strong class="font-medium text-brand-cream">That integrity deserves an identity to match.</strong>
+                </p>
+                <p class="mb-6">
+                    The Dragon's Den moment matters. Not as a headline — as a footnote. A brand with this provenance leads with the farm, the altitude, the harvest.
+                </p>
+                <p>
+                    The identity proposed here is built on a single premise: <strong class="font-medium text-brand-cream">the C as vessel, the name as pour</strong>. One continuous read. No embellishment needed.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TYPOGRAPHY SECTION -->
+    <section class="bg-brand-cream px-10 py-32">
+        <div class="mx-auto max-w-[1100px]">
+            <div class="reveal">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">Typography</p>
+                <h2 class="mb-6 font-serif text-[clamp(2rem,4vw,3rem)] leading-tight text-brand-green">
+                    Type that <em class="italic text-brand-brown">signals</em> standing.
+                </h2>
+                <p class="mb-16 max-w-[600px] font-serif text-[1.15rem] font-light leading-relaxed text-brand-green/75">
+                    Premium brands don't announce themselves. They signal. Typography is the first signal — before a word is read. The proposed type system pairs a classical display face with a refined sans.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+                <div class="reveal bg-brand-green p-14 text-brand-cream">
+                    <p class="mb-7 text-[0.55rem] uppercase tracking-[0.4em] text-brand-brown">Display — Cormorant Garamond</p>
+                    <p class="mb-6 font-serif text-[clamp(2rem,4vw,3.2rem)] font-light leading-tight">
+                        The finest single estate<br /><em class="italic">Honduras has to offer.</em>
+                    </p>
+                    <p class="text-[0.75rem] font-light uppercase tracking-[0.08em] leading-relaxed text-brand-cream/60">
+                        Direct Farm Relationships · SHG Grading · Artisan Roasted
+                    </p>
+                </div>
+                <div class="reveal bg-[#2C5C32] p-14 text-brand-cream">
+                    <p class="mb-7 text-[0.55rem] uppercase tracking-[0.4em] text-brand-brown">Secondary — Montserrat</p>
+                    <p class="mb-6 font-sans text-[clamp(1.4rem,3vw,2.2rem)] font-light leading-tight uppercase">
+                        COPAN<br />SPECIALTY SHG
+                    </p>
+                    <p class="text-[0.75rem] font-light uppercase tracking-[0.08em] leading-relaxed text-brand-cream/60">
+                        Strictly High Grown · Direct Import · Fresh Roasted to Order
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. COLOUR PALETTE SECTION -->
+    <section class="bg-brand-dark px-10 py-32 text-brand-cream">
+        <div class="mx-auto max-w-[1100px]">
+            <div class="reveal">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">Colour Palette</p>
+                <h2 class="font-serif text-[clamp(2rem,4vw,3rem)] leading-tight">
+                    Drawn from the <em class="italic text-brand-brown">land</em> it comes from.
+                </h2>
+            </div>
+
+            <div class="mt-14 flex h-[180px] gap-0.5 swatch-group">
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-[flex] duration-500 bg-brand-green">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr] text-brand-cream/50">Forest Green</span>
+                    <span class="absolute bottom-5 right-4 font-serif text-[1.1rem] opacity-50 text-brand-cream/50">#1B3A1F</span>
+                </div>
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-[flex] duration-500 bg-brand-brown">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr] text-brand-cream/50">Roast Brown</span>
+                    <span class="absolute bottom-5 right-4 font-serif text-[1.1rem] opacity-50 text-brand-cream/50">#8B6343</span>
+                </div>
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-[flex] duration-500 bg-brand-cream">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr] text-brand-green/40">Parchment</span>
+                    <span class="absolute bottom-5 right-4 font-serif text-[1.1rem] opacity-50 text-brand-green/40">#F5F0E8</span>
+                </div>
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-[flex] duration-500 bg-brand-gold">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr] text-brand-cream/50">Harvest Gold</span>
+                    <span class="absolute bottom-5 right-4 font-serif text-[1.1rem] opacity-50 text-brand-cream/50">#B8960C</span>
+                </div>
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-[flex] duration-500 bg-brand-dark">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr] text-brand-cream/50">Deep Forest</span>
+                    <span class="absolute bottom-5 right-4 font-serif text-[1.1rem] opacity-50 text-brand-cream/50">#0D1F10</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CONCEPT SECTION -->
+    <section class="bg-brand-cream px-10 py-32">
+        <div class="mx-auto max-w-[1100px]">
+            <div class="reveal">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Proposed Mark</p>
+                <h2 class="mb-12 font-serif text-[clamp(2rem,4vw,3rem)] leading-tight text-brand-green">
+                    A C that <em class="italic text-brand-brown">pours</em>. A name that <em class="italic text-brand-brown">flows</em>.
+                </h2>
+                <div class="mb-10 h-px w-10 bg-brand-brown"></div>
+                <p class="max-w-[580px] font-serif text-[1.15rem] font-light leading-relaxed text-brand-green/75">
+                    The C as vessel. The name emerging from its opening — not orbiting, not floating, not tucked inside — flowing naturally from the point of origin. Two elements. One continuous read.
+                </p>
+            </div>
+
+            <div class="mt-14 grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+                <div class="reveal flex flex-col items-center justify-center gap-8 border border-brand-green/10 bg-brand-cream py-20 px-14">
+                    <img src="https://i.ibb.co/XkGLG37g/Caribe-Coffee-logo-3.png" alt="Parchment" class="w-[min(320px,70%)]">
+                    <p class="text-[0.55rem] uppercase tracking-[0.35em] opacity-40">Parchment</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 bg-brand-dark py-20 px-14">
+                    <div class="gold-logo w-[min(320px,70%)] aspect-[520/200]"></div>
+                    <p class="text-[0.55rem] uppercase tracking-[0.35em] text-brand-cream opacity-40">Dark</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 bg-brand-green py-20 px-14">
+                    <div class="gold-logo w-[min(320px,70%)] aspect-[520/200]"></div>
+                    <p class="text-[0.55rem] uppercase tracking-[0.35em] text-brand-cream opacity-40">Forest Green</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 bg-[#D4C4A8] py-20 px-14">
+                    <img src="https://i.ibb.co/XkGLG37g/Caribe-Coffee-logo-3.png" alt="Kraft" class="w-[min(320px,70%)]">
+                    <p class="text-[0.55rem] uppercase tracking-[0.35em] opacity-40">Kraft</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CTA SECTION -->
+    <section class="bg-brand-green px-10 py-36 text-center">
+        <div class="mx-auto max-w-[680px]">
+            <div class="reveal">
+                <h2 class="mb-8 font-serif text-[clamp(2.2rem,5vw,3.5rem)] font-light leading-tight text-brand-cream">
+                    This is what <em class="italic text-brand-brown">Caribe</em><br />could look like.
+                </h2>
+                <div class="mx-auto mb-12 h-px w-10 bg-brand-brown"></div>
+                <p class="mx-auto mb-14 max-w-[480px] text-[0.8rem] font-light tracking-wider leading-relaxed text-brand-cream/65">
+                    The concept above represents one considered direction. A full brand identity package includes primary and secondary logomarks, guidelines, colour system, typography, and packaging direction.
+                </p>
+                <p class="font-serif text-[1rem] italic tracking-wider text-brand-cream/50">
+                    To discuss this concept, write to<br />
+                    <a href="mailto:stephen@brandarchitect.cc" class="text-brand-brown no-underline border-b border-brand-brown/30 transition-colors hover:border-brand-brown">
+                        stephen@brandarchitect.cc
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="flex flex-wrap items-center justify-between gap-4 bg-brand-dark px-10 py-10">
+        <p class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/30">
+            © Brand Architect · <strong class="text-brand-brown">brandarchitect.cc</strong>
+        </p>
+        <p class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/30">
+            Where Brands Are Built with Purpose.
+        </p>
+    </footer>
+
+    <script>
+        // Intersection Observer for Reveal Animations
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
