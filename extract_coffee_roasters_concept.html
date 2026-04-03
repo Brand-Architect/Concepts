@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Coffee Roasters · Brand Identity Concept</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#1B3A1F',
+                            parchment: '#F2E8D5',
+                            brown: '#4F2E0C',
+                            gold: '#B8960C',
+                            dark: '#0D1F10',
+                            cream: '#FDFBF7',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'ui-serif', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, #4F2E0C, transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        .logo-mask {
+            background-color: #4F2E0C;
+            -webkit-mask-image: url('https://i.ibb.co/Kxw5zXzv/Extract-Coffee-Roasters-logo.png');
+            mask-image: url('https://i.ibb.co/Kxw5zXzv/Extract-Coffee-Roasters-logo.png');
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            display: inline-block;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #F2E8D5;
+            color: #0D1F10;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Prevent flash of unstyled content */
+        [v-cloak] { display: none; }
+    </style>
+
+    <!-- React and Framer Motion CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- Fallback while loading -->
+        <div style="height: 100vh; display: flex; align-items: center; justify-content: center; background: #F2E8D5; font-family: Montserrat, sans-serif; color: #4F2E0C; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.7rem;">
+            Loading Concept...
+        </div>
+    </div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        // Framer Motion often uses 'Motion' or 'framerMotion' as the global variable in UMD builds
+        const { motion, useInView, AnimatePresence } = window.Motion || window.framerMotion || {};
+
+        // Reveal Component
+        function Reveal({ children, className = "" }) {
+            const ref = useRef(null);
+            const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+            return (
+                <motion.div
+                    ref={ref}
+                    initial={{ opacity: 0, y: 32 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className={className}
+                >
+                    {children}
+                </motion.div>
+            );
+        }
+
+        // Hero Component
+        function Hero() {
+            return (
+                <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-brand-parchment px-10 py-20">
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,rgba(92,64,51,0.05)_0%,transparent_70%),radial-gradient(ellipse_at_20%_80%,rgba(27,58,31,0.05)_0%,transparent_60%)]" />
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.3 }}
+                        className="mb-14 text-[0.65rem] font-medium uppercase tracking-[0.35em] text-brand-brown"
+                    >
+                        Brand Architect · Concept Proposal · Extract Coffee Roasters
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1.2, delay: 0.6 }}
+                        className="relative z-10 flex flex-col items-center"
+                    >
+                        <img 
+                            src="https://i.ibb.co/Kxw5zXzv/Extract-Coffee-Roasters-logo.png" 
+                            alt="Extract Coffee Roasters Logo" 
+                            className="w-[min(600px,90vw)] h-auto drop-shadow-xl"
+                            referrerPolicy="no-referrer"
+                        />
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 1 }}
+                        className="mx-auto my-14 h-[60px] w-px bg-gradient-to-b from-transparent via-brand-brown to-transparent"
+                    />
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 1.2 }}
+                        className="max-w-[520px] text-center font-serif text-[clamp(1.3rem,2.5vw,1.8rem)] font-light italic leading-relaxed text-brand-dark"
+                    >
+                        "Make Coffee Better" — A Bristol roastery with a mission that deserves a timeless identity.
+                    </motion.p>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 24 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 1.5 }}
+                        className="mt-7 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown/60"
+                    >
+                        Where Craft Meets Purpose
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 2 }}
+                        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2"
+                    >
+                        <span className="text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown/40">Explore</span>
+                        <div className="scroll-line" />
+                    </motion.div>
+                </section>
+            );
+        }
+
+        // Critique Component
+        function Critique() {
+            const critiques = [
+                {
+                    number: "01",
+                    title: "Visual Overload",
+                    text: "The current homepage is a series of competing banners. 'Betty is Back', 'Impact Report', 'Hero Coffees' — all shouting for attention simultaneously, diluting the premium feel."
+                },
+                {
+                    number: "02",
+                    title: "Navigation Friction",
+                    text: "The menu is deep and fragmented. Finding the 'About Us' story requires digging through sub-menus, burying the roastery's Bristol heritage and artisan roots."
+                },
+                {
+                    number: "03",
+                    title: "Promotional Clutter",
+                    text: "Limited edition drops and discount codes dominate the visual space, overshadowing the 'Artisan' positioning of the coffee itself and the craft behind it."
+                },
+                {
+                    number: "04",
+                    title: "Impact Reporting",
+                    text: "The 2024 Impact Report is a vital piece of the brand story, yet it's treated as a secondary link rather than the core foundation of 'Make Coffee Better'."
+                }
+            ];
+
+            return (
+                <section className="mx-auto max-w-[1100px] px-10 py-24">
+                    <Reveal>
+                        <p className="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Opportunity</p>
+                        <h2 className="mb-12 font-serif text-[clamp(2rem,4vw,3rem)] leading-[1.15] text-brand-dark">
+                            A brand with <em className="italic text-brand-brown">extraordinary</em> purpose — and an identity that can amplify it.
+                        </h2>
+                        <div className="mb-10 h-px w-10 bg-brand-brown" />
+                        <p className="max-w-[620px] font-serif text-[1.15rem] font-light leading-relaxed text-brand-dark/75">
+                            Extract Coffee Roasters is more than just a Bristol roastery. They are on a mission to "Make Coffee Better" for communities, growers, and the planet. This purpose-driven story deserves a visual language that is as refined and intentional as the coffee they roast.
+                        </p>
+                    </Reveal>
+
+                    <div className="mt-16 grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+                        {critiques.map((item, index) => (
+                            <div key={index}>
+                                <Reveal className={`relative overflow-hidden p-11 text-brand-parchment ${index % 2 === 0 ? 'bg-brand-green' : 'bg-brand-dark'}`}>
+                                    <div className="absolute left-0 top-0 h-full w-[3px] bg-brand-brown" />
+                                    <span className="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-parchment/5 pointer-events-none">
+                                        {item.number}
+                                    </span>
+                                    <p className="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">{item.title}</p>
+                                    <p className="font-serif text-[1.15rem] font-light leading-relaxed text-brand-parchment/85">{item.text}</p>
+                                </Reveal>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            );
+        }
+
+        // Story Component
+        function Story() {
+            return (
+                <section className="bg-brand-parchment px-10 py-32 text-brand-dark">
+                    <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-20 md:grid-cols-2">
+                        <div className="flex flex-col gap-6">
+                            <Reveal className="bg-brand-green p-8 text-brand-parchment">
+                                <div className="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">2007</div>
+                                <div className="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Founded in Bristol — Artisan Roots</div>
+                            </Reveal>
+                            <Reveal className="bg-brand-dark p-8 text-brand-parchment">
+                                <div className="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">100%</div>
+                                <div className="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Sustainably Sourced — Ethical Impact</div>
+                            </Reveal>
+                            <Reveal className="bg-brand-green p-8 text-brand-parchment">
+                                <div className="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">2024</div>
+                                <div className="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Latest Impact Report — Transparent Progress</div>
+                            </Reveal>
+                        </div>
+
+                        <Reveal className="font-serif text-[1.2rem] font-light leading-relaxed text-brand-dark/85">
+                            <p className="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Story Beneath the Brand</p>
+                            <p className="mb-6">
+                                Extract Coffee Roasters began in 2007 with a simple, powerful mission: <strong className="font-medium text-brand-dark">Make Coffee Better.</strong> It wasn't just about the roast; it was about the entire journey from farm to cup.
+                            </p>
+                            <p className="mb-6">
+                                From their Bristol roastery, they've built a community centered on integrity. Their commitment to growers, communities, and the planet is woven into every bean. The 2024 Impact Report is a landmark of transparency in an industry that often hides its tracks.
+                            </p>
+                            <p>
+                                The identity proposed here is built on a single premise: <strong className="font-medium text-brand-dark">The ECR monogram as a seal of quality.</strong> A mark that stands for artisan craft and unwavering purpose.
+                            </p>
+                        </Reveal>
+                    </div>
+                </section>
+            );
+        }
+
+        // Typography Component
+        function Typography() {
+            return (
+                <section className="bg-brand-parchment px-10 py-32">
+                    <div className="mx-auto max-w-[1100px]">
+                        <Reveal>
+                            <p className="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">Typography</p>
+                            <h2 className="mb-6 font-serif text-[clamp(2rem,4vw,3rem)] leading-tight text-brand-dark">
+                                Type that <em className="italic text-brand-brown">signals</em> standing.
+                            </h2>
+                            <p className="mb-16 max-w-[600px] font-serif text-[1.15rem] font-light leading-relaxed text-brand-dark/75">
+                                Premium brands don't announce themselves. They signal. Typography is the first signal — before a word is read. The proposed type system pairs a classical display face with a refined sans; the former carries the brand's heritage, the latter its precision.
+                            </p>
+                        </Reveal>
+
+                        <div className="grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+                            <Reveal className="bg-brand-green p-14 text-brand-parchment">
+                                <p className="mb-7 text-[0.55rem] uppercase tracking-[0.4em] text-brand-brown">Display — Cormorant Garamond</p>
+                                <p className="mb-6 font-serif text-[clamp(2rem,4vw,3.2rem)] font-light leading-tight">
+                                    Make Coffee Better<br /><em className="italic">for communities and growers.</em>
+                                </p>
+                                <p className="text-[0.75rem] font-light uppercase tracking-[0.08em] leading-relaxed text-brand-parchment/60">
+                                    Artisan Roasted · Bristol Heritage · Ethical Impact
+                                </p>
+                            </Reveal>
+                            <Reveal className="bg-brand-dark p-14 text-brand-parchment">
+                                <p className="mb-7 text-[0.55rem] uppercase tracking-[0.4em] text-brand-brown">Secondary — Montserrat</p>
+                                <p className="mb-6 font-sans text-[clamp(1.4rem,3vw,2.2rem)] font-light leading-tight uppercase">
+                                    BRISTOL<br />ROASTERY EST. 2007
+                                </p>
+                                <p className="text-[0.75rem] font-light uppercase tracking-[0.08em] leading-relaxed text-brand-parchment/60">
+                                    Sustainably Sourced · Fresh Roasted · Delivered Daily
+                                </p>
+                            </Reveal>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // ColourPalette Component
+        function ColourPalette() {
+            const swatches = [
+                { name: "Extract Green", hex: "#1B3A1F", bg: "bg-brand-green", text: "text-brand-parchment/50" },
+                { name: "Roast Brown", hex: "#4F2E0C", bg: "bg-brand-brown", text: "text-brand-parchment/50" },
+                { name: "Parchment", hex: "#F2E8D5", bg: "bg-brand-parchment", text: "text-brand-dark/40" },
+                { name: "Deep Forest", hex: "#0D1F10", bg: "bg-brand-dark", text: "text-brand-parchment/50" },
+                { name: "Pure Cream", hex: "#FDFBF7", bg: "bg-brand-cream", text: "text-brand-dark/40" },
+            ];
+
+            return (
+                <section className="bg-brand-parchment px-10 py-32 text-brand-dark">
+                    <div className="mx-auto max-w-[1100px]">
+                        <Reveal>
+                            <p className="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">Colour Palette</p>
+                            <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] leading-tight text-brand-dark">
+                                Drawn from the <em className="italic text-brand-brown">craft</em> of the roast.
+                            </h2>
+                        </Reveal>
+
+                        <div className="mt-14 flex h-[180px] gap-0.5">
+                            {swatches.map((swatch, index) => (
+                                <div
+                                    key={index}
+                                    className={`group relative flex flex-1 cursor-pointer items-end overflow-hidden p-5 transition-[flex] duration-500 hover:flex-[2.5] ${swatch.bg}`}
+                                >
+                                    <span className={`rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr] ${swatch.text}`}>
+                                        {swatch.name}
+                                    </span>
+                                    <span className={`absolute bottom-5 right-4 font-serif text-[1.1rem] opacity-50 ${swatch.text}`}>
+                                        {swatch.hex}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // Concept Component
+        function Concept() {
+            return (
+                <section className="bg-brand-parchment px-10 py-32">
+                    <div className="mx-auto max-w-[1100px]">
+                        <Reveal>
+                            <p className="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Proposed Mark</p>
+                            <h2 className="mb-12 font-serif text-[clamp(2rem,4vw,3rem)] leading-tight text-brand-dark">
+                                A seal of <em className="italic text-brand-brown">quality</em>. A mark of <em className="italic text-brand-brown">purpose</em>.
+                            </h2>
+                            <div className="mb-10 h-px w-10 bg-brand-brown" />
+                            <p className="max-w-[580px] font-serif text-[1.15rem] font-light leading-relaxed text-brand-dark/75">
+                                The ECR monogram. A refined, timeless mark that represents the artisan craft of the roast. It stands as a seal of quality, from the Bristol roastery to the final cup. Scalable, intentional, and deeply rooted in the mission to "Make Coffee Better".
+                            </p>
+                        </Reveal>
+
+                        <div className="mt-14 grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+                            <div className="flex flex-col items-center justify-center gap-8 border border-brand-green/10 bg-brand-parchment py-20 px-14">
+                                <img 
+                                    src="https://i.ibb.co/Kxw5zXzv/Extract-Coffee-Roasters-logo.png" 
+                                    alt="Extract Coffee Roasters — Light" 
+                                    className="w-[min(320px,70%)]"
+                                    referrerPolicy="no-referrer"
+                                />
+                                <p className="text-[0.55rem] uppercase tracking-[0.35em] opacity-40">Parchment</p>
+                            </div>
+                            <div className="flex flex-col items-center justify-center gap-8 bg-brand-dark py-20 px-14">
+                                <img 
+                                    src="https://i.ibb.co/Kxw5zXzv/Extract-Coffee-Roasters-logo.png" 
+                                    alt="Extract Coffee Roasters — Dark" 
+                                    className="w-[min(320px,70%)] invert brightness-200"
+                                    referrerPolicy="no-referrer"
+                                />
+                                <p className="text-[0.55rem] uppercase tracking-[0.35em] text-brand-parchment opacity-40">Dark</p>
+                            </div>
+                            <div className="flex flex-col items-center justify-center gap-8 bg-brand-green py-20 px-14">
+                                <img 
+                                    src="https://i.ibb.co/Kxw5zXzv/Extract-Coffee-Roasters-logo.png" 
+                                    alt="Extract Coffee Roasters — Green" 
+                                    className="w-[min(320px,70%)] invert brightness-200"
+                                    referrerPolicy="no-referrer"
+                                />
+                                <p className="text-[0.55rem] uppercase tracking-[0.35em] text-brand-parchment opacity-40">Extract Green</p>
+                            </div>
+                            <div className="flex flex-col items-center justify-center gap-8 bg-brand-cream py-20 px-14">
+                                <img 
+                                    src="https://i.ibb.co/Kxw5zXzv/Extract-Coffee-Roasters-logo.png" 
+                                    alt="Extract Coffee Roasters — Cream" 
+                                    className="w-[min(320px,70%)]"
+                                    referrerPolicy="no-referrer"
+                                />
+                                <p className="text-[0.55rem] uppercase tracking-[0.35em] opacity-40">Pure Cream</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        }
+
+        // CTA Component
+        function CTA() {
+            return (
+                <section className="bg-brand-parchment px-10 py-36 text-center">
+                    <div className="mx-auto max-w-[680px]">
+                        <Reveal>
+                            <h2 className="mb-8 font-serif text-[clamp(2.2rem,5vw,3.5rem)] font-light leading-tight text-brand-dark">
+                                This is what <em className="italic text-brand-brown">Extract</em><br />could look like.
+                            </h2>
+                            <div className="mx-auto mb-12 h-px w-10 bg-brand-brown" />
+                            <p className="mx-auto mb-14 max-w-[480px] text-[0.8rem] font-light tracking-wider leading-relaxed text-brand-dark/65">
+                                The concept above represents one considered direction for Extract Coffee Roasters. A full brand identity package includes primary and secondary logomarks, brand guidelines, colour system, typography specification, packaging direction, and digital application — all designed to "Make Coffee Better".
+                            </p>
+                            <p className="font-serif text-[1rem] italic tracking-wider text-brand-dark/50">
+                                To discuss this concept, write to<br />
+                                <a href="mailto:stephen@brandarchitect.cc" className="text-brand-brown no-underline border-b border-brand-brown/30 transition-colors hover:border-brand-brown">
+                                    stephen@brandarchitect.cc
+                                </a>
+                            </p>
+                        </Reveal>
+                    </div>
+                </section>
+            );
+        }
+
+        // Footer Component
+        function Footer() {
+            return (
+                <footer className="flex flex-wrap items-center justify-between gap-4 bg-brand-parchment border-t border-brand-brown/10 px-10 py-10">
+                    <p className="text-[0.6rem] uppercase tracking-[0.3em] text-brand-dark/30">
+                        © Brand Architect · <strong className="text-brand-brown">brandarchitect.cc</strong>
+                    </p>
+                    <p className="text-[0.6rem] uppercase tracking-[0.3em] text-brand-dark/30">
+                        Extract Coffee Roasters · Brand Identity Concept
+                    </p>
+                </footer>
+            );
+        }
+
+        // Main App Component
+        function App() {
+            return (
+                <main className="min-h-screen font-sans selection:bg-brand-gold selection:text-brand-dark">
+                    <Hero />
+                    <Critique />
+                    <Story />
+                    <Typography />
+                    <ColourPalette />
+                    <Concept />
+                    <CTA />
+                    <Footer />
+                </main>
+            );
+        }
+
+        // Render the App
+        try {
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<App />);
+        } catch (e) {
+            console.error("Render failed:", e);
+            document.getElementById('root').innerHTML = `<div style="padding: 20px; color: red;">Error: ${e.message}</div>`;
+        }
+    </script>
+</body>
+</html>
