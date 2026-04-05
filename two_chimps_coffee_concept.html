@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Chimps Coffee - Brand Evolution Proposal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                    },
+                    colors: {
+                        gold: "#C5A059",
+                        stone: "#8C8278",
+                        ink: "#0E1111",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #FAF8F5; }
+        .grid-bg {
+            background: repeating-linear-gradient(90deg, transparent, transparent calc(10vw - 1px), rgba(197, 160, 89, 0.04) calc(10vw - 1px), rgba(197, 160, 89, 0.04) 10vw);
+        }
+        .deliverable-card { background: white; border: 1px solid rgba(197, 160, 89, 0.1); padding: 1.75rem; }
+        .section-num { 
+            font-family: "Cormorant Garamond", serif;
+            font-size: 6rem;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(197, 160, 89, 0.15);
+        }
+        /* Refined rendering: Ensuring smooth curves for the monogram */
+        .logo-display {
+            image-rendering: auto; 
+            display: block;
+            width: 100%;
+            height: auto;
+            filter: contrast(1.02);
+        }
+        .dark-logo-display {
+            filter: brightness(0) invert(1);
+            image-rendering: auto;
+        }
+    </style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+    <div class="grid-bg fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- ── COVER ── -->
+    <header class="min-h-screen flex flex-col justify-between p-8 md:p-16 relative border-b border-black/5 overflow-hidden">
+        <div class="flex justify-between items-center relative z-10">
+            <div class="flex items-center gap-4">
+                <span class="font-serif text-2xl tracking-tighter uppercase">Two Chimps</span>
+                <div class="h-6 w-px bg-gray-200 hidden sm:block"></div>
+                <span class="text-[10px] uppercase tracking-widest text-stone hidden sm:block font-bold">Brand Evolution Proposal</span>
+            </div>
+            <span class="text-[10px] uppercase tracking-widest text-stone font-bold">2026</span>
+        </div>
+
+        <div class="relative z-10 py-20">
+            <p class="text-[11px] uppercase tracking-[0.3em] text-gold font-extrabold mb-6">Prepared for Two Chimps Coffee</p>
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl font-light leading-none mb-8">
+                Mastery<br />over<br /><span class="italic text-gold">mischief.</span>
+            </h1>
+            <p class="text-sm text-stone max-w-md leading-relaxed">
+                This document outlines the visual ceiling currently holding your roastery back, the direction for your new artisan identity, and the path to securing high-end commercial contracts.
+            </p>
+        </div>
+
+        <!-- Hero Logo - Reduced to 42% for better white space and architectural balance -->
+        <div class="absolute right-[-1%] top-1/2 -translate-y-1/2 w-[42%] hidden md:block z-0">
+            <img src="https://i.ibb.co/gMt96B6V/Two-Chimps-coffee-logo.png" class="logo-display" alt="New Two Chimps Monogram">
+        </div>
+
+        <div class="flex justify-between items-end pt-8 border-t border-black/5 relative z-10">
+            <div class="text-xs text-stone leading-relaxed">
+                Two Chimps Coffee<br />
+                Rutland, UK · twochimpscoffee.com
+            </div>
+            <div class="text-xs text-stone font-medium uppercase tracking-widest">
+                Where Brands Are Built with Purpose.
+            </div>
+        </div>
+    </header>
+
+    <!-- ── 01 AUDIT ── -->
+    <section class="py-24 px-8 md:px-16 border-b border-black/5 relative z-10">
+        <div class="flex gap-8 mb-16">
+            <span class="section-num">01</span>
+            <div>
+                <h2 class="font-serif text-4xl md:text-5xl font-normal">Breaking the <span class="italic text-gold">retail ceiling</span></h2>
+                <p class="text-sm text-stone max-w-xl mt-4 leading-relaxed">Your coffee is roasted in 12kg artisan batches. Currently, your branding speaks to the playground, not the roastery. Here is why the "fun" is costing you commercial growth.</p>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 mb-16">
+            <!-- Current State -->
+            <div class="bg-[#EDE8E0] p-8 rounded-sm">
+                <p class="text-[10px] uppercase tracking-widest text-stone mb-6 font-bold">Current Identity</p>
+                <div class="bg-white border-b border-gray-100 p-6 flex flex-col items-center gap-4">
+                   <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-[10px] text-orange-400 font-bold uppercase italic">Chimp</div>
+                   <p class="text-[10px] text-gray-400 font-bold tracking-widest">FUN & FUNKY COFFEE</p>
+                </div>
+                <div class="h-40 bg-white/50 flex flex-col items-center justify-center text-center p-4">
+                    <p class="text-xs font-bold text-red-800 uppercase tracking-tighter mb-1">Fault: Whimsical Barrier</p>
+                    <small class="text-[9px] text-gray-500 max-w-[200px]">Mascot-led design alienates luxury wholesale partners and professional procurement officers.</small>
+                </div>
+            </div>
+
+            <!-- Proposed State -->
+            <div class="bg-ink p-8 rounded-sm text-white">
+                <p class="text-[10px] uppercase tracking-widest text-white/40 mb-6 font-bold">Proposed Evolution</p>
+                <div class="bg-white/5 border-b border-white/10 p-6 flex flex-col items-center gap-4">
+                    <img src="https://i.ibb.co/gMt96B6V/Two-Chimps-coffee-logo.png" class="h-40 w-auto dark-logo-display" alt="New Monogram Evolution">
+                    <div class="flex gap-4 text-[8px] text-white/40 font-bold tracking-widest uppercase mt-4"><span>Origin</span><span>Process</span><span>Artisan</span></div>
+                </div>
+                <div class="h-40 flex items-center justify-between px-8">
+                    <div>
+                        <p class="font-serif text-xl italic leading-tight text-gold">Built with Purpose.</p>
+                        <span class="inline-block mt-2 border border-gold/30 text-[8px] px-3 py-1 uppercase tracking-widest text-gold">The Collection</span>
+                    </div>
+                    <img src="https://i.ibb.co/gMt96B6V/Two-Chimps-coffee-logo.png" class="h-28 w-auto dark-logo-display opacity-20" alt="Watermark">
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 shadow-sm border border-black/5">
+                <span class="text-[10px] uppercase tracking-widest text-gold font-bold mb-3 block">Critical Fault</span>
+                <h3 class="font-serif text-xl font-bold mb-3">Nomenclature Friction</h3>
+                <p class="text-xs text-stone leading-relaxed">Names like 'Circus Lawnmowers' create an immediate professional barrier. It suggests a novelty product rather than a serious artisan roast.</p>
+            </div>
+            <div class="bg-white p-8 shadow-sm border border-black/5">
+                <span class="text-[10px] uppercase tracking-widest text-gold font-bold mb-3 block">Critical Fault</span>
+                <h3 class="font-serif text-xl font-bold mb-3">Illustrative Clutter</h3>
+                <p class="text-xs text-stone leading-relaxed">The current visual language is busy and character-heavy. It lacks the quiet confidence required for high-end boutique and hospitality placements.</p>
+            </div>
+            <div class="bg-white p-8 shadow-sm border border-black/5">
+                <span class="text-[10px] uppercase tracking-widest text-gold font-bold mb-3 block">Critical Fault</span>
+                <h3 class="font-serif text-xl font-bold mb-3">The "Fun" Paradox</h3>
+                <p class="text-xs text-stone leading-relaxed">By trying to be "no-nonsense" through puns and cartoons, the brand actually becomes high-maintenance to navigate for serious buyers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 02 DIRECTION ── -->
+    <section class="py-24 px-8 md:px-16 bg-[#EDE8E0] relative z-10 overflow-hidden">
+        <div class="flex gap-8 mb-16">
+            <span class="section-num">02</span>
+            <div>
+                <h2 class="font-serif text-4xl md:text-5xl font-normal">A new <span class="italic text-gold">standard</span></h2>
+                <p class="text-sm text-stone max-w-xl mt-4 leading-relaxed">Moving from "mischief" to "mastery." A brand built on the technical precision of the roast.</p>
+            </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="flex justify-center">
+                <img src="https://i.ibb.co/gMt96B6V/Two-Chimps-coffee-logo.png" class="w-full max-w-md h-auto logo-display" alt="Monogram Detail">
+            </div>
+            <div>
+                <h3 class="font-serif text-3xl md:text-4xl italic text-gold leading-tight mb-6">Artisan, precise<br />and unshakeable.</h3>
+                <p class="text-sm text-stone leading-relaxed mb-6">
+                    The proposed identity removes the mascot-led distractions to focus on the architecture of the roast. The new interlocking "TC" monogram communicates the heritage and quiet confidence of a master roaster.
+                </p>
+                <div class="flex gap-8">
+                    <div>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gold">Palette</p>
+                        <p class="text-[9px] text-stone">#0E1111 / #C5A059 / #FAF8F5</p>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold uppercase tracking-widest text-gold">Tone</p>
+                        <p class="text-[9px] text-stone">Classy / Distinguished / Expert</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 03 DELIVERABLES ── -->
+    <section class="py-24 px-8 md:px-16 border-b border-black/5 relative z-10">
+        <div class="flex gap-8 mb-16">
+            <span class="section-num">03</span>
+            <div>
+                <h2 class="font-serif text-4xl md:text-5xl font-normal">The 12 Artboard <em>Package</em></h2>
+                <p class="text-sm text-stone max-w-xl mt-4 leading-relaxed">A strategic roadmap for national commercial expansion. Each board is meticulously crafted to secure high-end placement.</p>
+            </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">01</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Brand Heart</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Defining the 'Artisan Authority' purpose and tone.</p>
+            </div>
+            <div class="deliverable-card border-gold/40 shadow-lg">
+                <div class="font-serif text-3xl text-gold/20 mb-4">02</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Primary Logo</h4>
+                <p class="text-[11px] text-stone leading-relaxed">The new distinguished "TC" monogram.</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">03</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Logo Variations</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Responsive lockups for diverse applications.</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">04</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Size & Clearance</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Precision rules for brand integrity.</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">05</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Colour Palette</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Estate Black, Roast Gold, and Artisan Cream.</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">06</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Typography</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Classy serif and modern sans pairings.</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">07</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Imagery</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Artisan-focused photography guidelines.</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">08</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Digital Application</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Premium web and social touchpoints.</p>
+            </div>
+            <div class="deliverable-card border-gold/40 shadow-lg">
+                <div class="font-serif text-3xl text-gold/20 mb-4">09</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Physical Architecture</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Luxury packaging and signage mockups.</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">10</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Brand Summary</h4>
+                <p class="text-[11px] text-stone leading-relaxed">The single-page artisan reference guide.</p>
+            </div>
+            <div class="deliverable-card border-gold/40 shadow-lg">
+                <div class="font-serif text-3xl text-gold/20 mb-4">11</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Print Files</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Vector source files and print-ready PDFs.</p>
+            </div>
+            <div class="deliverable-card">
+                <div class="font-serif text-3xl text-gold/20 mb-4">12</div>
+                <h4 class="text-xs font-bold uppercase tracking-widest mb-2">Screen Optimised</h4>
+                <p class="text-[11px] text-stone leading-relaxed">Lightweight assets for fast-loading experiences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 04 NEXT STEPS ── -->
+    <section class="py-24 px-8 md:px-16 bg-ink text-white relative z-10">
+        <div class="flex gap-8 mb-16">
+            <span class="section-num" style="-webkit-text-stroke: 1px rgba(255,255,255,0.1)">04</span>
+            <div>
+                <h2 class="font-serif text-4xl md:text-5xl font-normal">Next <em>steps</em></h2>
+                <p class="text-sm text-white/40 max-w-xl mt-4 leading-relaxed">Securing the new identity.</p>
+            </div>
+        </div>
+
+        <div class="max-w-2xl">
+            <div class="flex gap-6 py-8 border-b border-white/10">
+                <span class="font-serif text-4xl text-gold">1</span>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-2">Review this proposal</h4>
+                    <p class="text-xs text-white/40 leading-relaxed">Evaluate the strategic shift from playful retail to artisan authority.</p>
+                </div>
+            </div>
+            <div class="flex gap-6 py-8 border-b border-white/10">
+                <span class="font-serif text-4xl text-gold">2</span>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-2">Sign off the identity</h4>
+                    <p class="text-xs text-white/40 leading-relaxed">Confirm the new monogram as the cornerstone of the brand.</p>
+                </div>
+            </div>
+            <div class="flex gap-6 py-8">
+                <span class="font-serif text-4xl text-gold">3</span>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-2">Commission the full kit</h4>
+                    <p class="text-xs text-white/40 leading-relaxed">Initiate the transition to the 12-artboard Brand Guidelines.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="mt-24 pt-12 border-t border-white/10 flex justify-between items-end">
+            <img src="https://i.ibb.co/gMt96B6V/Two-Chimps-coffee-logo.png" class="h-40 w-auto dark-logo-display" alt="Footer Monogram">
+            <div class="text-[10px] text-white/30 tracking-[0.2em] text-right leading-loose uppercase font-bold">
+                stephen@brandarchitect.cc &nbsp;·&nbsp; 2026<br />
+                Where Brands Are Built with Purpose.
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
