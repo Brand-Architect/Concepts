@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burn Valley Vineyard — Brand Identity Concept</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            ink:     '#1A1A14',
+                            vine:    '#2D3D25',
+                            sage:    '#7A8C6A',
+                            chalk:   '#F2EDE4',
+                            parch:   '#E8E0D0',
+                            berry:   '#5C2D3E',
+                            gold:    '#A8864A',
+                            mist:    '#B8C4A8',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        serif:   ['"Cormorant Garamond"', 'serif'],
+                        body:    ['"EB Garamond"', 'serif'],
+                        sans:    ['Jost', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ── Reveal animation ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── Logo mask technique ── */
+        .logo-mask {
+            mask-image: url('https://i.ibb.co/Qv7TxwpY/Burn-Valley-Vineyard-logo.png');
+            -webkit-mask-image: url('https://i.ibb.co/Qv7TxwpY/Burn-Valley-Vineyard-logo.png');
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-position: center;
+            display: inline-block;
+        }
+        
+        /* ── Grain overlay ── */
+        .grain::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.35;
+            mix-blend-mode: overlay;
+        }
+
+        /* ── Estate rule dividers ── */
+        .estate-rule {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .estate-rule::before {
+            content: '';
+            display: block;
+            width: 28px;
+            height: 0.5px;
+            background: #A8864A;
+        }
+
+        /* ── Swatch accordion ── */
+        .swatch-cell { transition: flex 0.55s cubic-bezier(0.4,0,0.2,1); }
+        .swatch-row:hover .swatch-cell { flex: 1; }
+        .swatch-cell:hover { flex: 2.8 !important; }
+
+        html { scroll-behavior: smooth; }
+        body { background-color: #F2EDE4; color: #1A1A14; margin: 0; }
+    </style>
+</head>
+<body class="font-body selection:bg-brand-gold selection:text-brand-chalk">
+
+    <!-- ═══════════════════════════════════════════
+         1. HERO (1.5x Larger)
+    ═══════════════════════════════════════════ -->
+    <section class="relative grain flex min-h-screen flex-col items-center justify-center overflow-hidden bg-brand-ink px-8 py-24 text-center">
+
+        <!-- Subtle radial atmosphere -->
+        <div class="pointer-events-none absolute inset-0"
+             style="background: radial-gradient(ellipse at 55% 35%, rgba(45,61,37,0.55) 0%, transparent 65%), radial-gradient(ellipse at 20% 75%, rgba(92,45,62,0.18) 0%, transparent 55%);"></div>
+
+        <!-- Top label -->
+        <p class="reveal font-sans text-[0.9rem] font-light uppercase tracking-[0.4em] text-brand-gold mb-14">
+            Brand Identity Concept &nbsp;·&nbsp; Burn Valley Vineyard
+        </p>
+
+        <!-- Logo -->
+        <div class="reveal w-[min(690px,92vw)] aspect-[460/200]"
+             style="transition-delay:0.2s; filter: drop-shadow(0 24px 64px rgba(0,0,0,0.65));">
+             <div class="logo-mask w-full h-full bg-[#F2EDE4]"></div>
+        </div>
+
+        <!-- Divider thread -->
+        <div class="reveal mx-auto my-16 h-[84px] w-px"
+             style="background: linear-gradient(to bottom, transparent, #A8864A, transparent); transition-delay: 0.4s;"></div>
+
+        <!-- Strapline -->
+        <p class="reveal font-serif text-[clamp(1.8rem,3.6vw,2.6rem)] font-light italic leading-relaxed text-brand-chalk max-w-[690px]"
+           style="transition-delay:0.6s;">
+            Twelve acres of Norfolk chalk. Nine grape varieties. One family's quiet conviction.
+        </p>
+
+        <p class="reveal mt-7 font-sans text-[0.87rem] uppercase tracking-[0.35em] text-brand-chalk/35"
+           style="transition-delay:0.8s;">Where Brands Are Built with Purpose</p>
+
+        <div class="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+            <span class="font-sans text-[0.82rem] uppercase tracking-[0.35em] text-brand-chalk/25">Explore</span>
+            <div class="w-px h-12 bg-gradient-to-b from-brand-gold to-transparent animate-pulse"></div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         2. THE OPPORTUNITY
+    ═══════════════════════════════════════════ -->
+    <section class="mx-auto max-w-[1080px] px-8 py-28">
+        <div class="reveal">
+            <div class="estate-rule mb-5">
+                <span class="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">The Opportunity</span>
+            </div>
+            <h2 class="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-[1.18] text-brand-vine mb-10">
+                A vineyard of genuine distinction —<br/>
+                <em class="text-brand-berry italic">deserving an identity to match.</em>
+            </h2>
+            <div class="mb-10 h-px w-10 bg-brand-gold opacity-60"></div>
+            <p class="max-w-[580px] font-body text-[1.15rem] font-normal leading-relaxed text-brand-vine/70">
+                Burn Valley Vineyard sits in the flinty chalk of North Creake, four miles from the Norfolk coast — a third-generation farming family who planted 17,000 vines on a conviction that this land could produce something exceptional. It can. It does. The brand around it should be equally exceptional.
+            </p>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 gap-px sm:grid-cols-2">
+            <div class="reveal relative overflow-hidden bg-brand-vine p-11 text-brand-chalk">
+                <div class="absolute left-0 top-0 h-full w-[2px] bg-brand-gold opacity-70"></div>
+                <span class="absolute right-5 top-2 font-serif text-[6rem] font-light leading-none text-brand-chalk/5 pointer-events-none select-none">01</span>
+                <p class="mb-4 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">The Current Mark</p>
+                <p class="font-body text-[1.1rem] leading-relaxed text-brand-chalk/80">
+                    Their existing logo is a complex photographic composite — handsome at large scale, but at the size of a bottle label neck, a website header, or a social media avatar, it dissolves. A vineyard of this standing needs a mark that commands at every size.
+                </p>
+            </div>
+
+            <div class="reveal relative overflow-hidden bg-[#253320] p-11 text-brand-chalk">
+                <div class="absolute left-0 top-0 h-full w-[2px] bg-brand-gold opacity-70"></div>
+                <span class="absolute right-5 top-2 font-serif text-[6rem] font-light leading-none text-brand-chalk/5 pointer-events-none select-none">02</span>
+                <p class="mb-4 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">The Digital Presence</p>
+                <p class="font-body text-[1.1rem] leading-relaxed text-brand-chalk/80">
+                    The website holds good content but the visual hierarchy doesn't yet reflect the quality in the bottle. Visitors should feel the terroir before they read a word. First impressions are set in under three seconds.
+                </p>
+            </div>
+
+            <div class="reveal relative overflow-hidden bg-[#1C2919] p-11 text-brand-chalk">
+                <div class="absolute left-0 top-0 h-full w-[2px] bg-brand-gold opacity-70"></div>
+                <span class="absolute right-5 top-2 font-serif text-[6rem] font-light leading-none text-brand-chalk/5 pointer-events-none select-none">03</span>
+                <p class="mb-4 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">The Label Opportunity</p>
+                <p class="font-body text-[1.1rem] leading-relaxed text-brand-chalk/80">
+                    Award-winning wines deserve award-winning labels. The vineyard cultivates nine varieties — Chardonnay, Pinot Noir, Bacchus, Solaris and more. Each deserves a label that does justice to the flinty chalk soil it grew from.
+                </p>
+            </div>
+
+            <div class="reveal relative overflow-hidden bg-[#141C10] p-11 text-brand-chalk">
+                <div class="absolute left-0 top-0 h-full w-[2px] bg-brand-gold opacity-70"></div>
+                <span class="absolute right-5 top-2 font-serif text-[6rem] font-light leading-none text-brand-chalk/5 pointer-events-none select-none">04</span>
+                <p class="mb-4 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">The Missed Signal</p>
+                <p class="font-body text-[1.1rem] leading-relaxed text-brand-chalk/80">
+                    South-facing. Chalk base. Glyphosate-free. An area of outstanding natural beauty. These are premium provenance signals that serious wine buyers specifically look for — and they are not yet leading the conversation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         3. THE ESTATE
+    ═══════════════════════════════════════════ -->
+    <section class="relative grain overflow-hidden bg-brand-vine px-8 py-32 text-brand-chalk">
+        <div class="mx-auto grid max-w-[1080px] grid-cols-1 items-start gap-20 md:grid-cols-2">
+            <div class="flex flex-col gap-12">
+                <div class="reveal border-l-[1.5px] border-brand-gold pl-6">
+                    <div class="font-display text-[clamp(2.8rem,5.5vw,4.2rem)] font-normal leading-none">12</div>
+                    <div class="mt-2 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">Acres of south-facing chalk</div>
+                </div>
+                <div class="reveal border-l-[1.5px] border-brand-gold pl-6" style="transition-delay:0.1s">
+                    <div class="font-display text-[clamp(2.8rem,5.5vw,4.2rem)] font-normal leading-none">17k</div>
+                    <div class="mt-2 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">Vines planted by hand</div>
+                </div>
+                <div class="reveal border-l-[1.5px] border-brand-gold pl-6" style="transition-delay:0.2s">
+                    <div class="font-display text-[clamp(2.8rem,5.5vw,4.2rem)] font-normal leading-none">9</div>
+                    <div class="mt-2 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">Grape varieties cultivated</div>
+                </div>
+                <div class="reveal border-l-[1.5px] border-brand-gold pl-6" style="transition-delay:0.3s">
+                    <div class="font-display text-[clamp(2.8rem,5.5vw,4.2rem)] font-normal leading-none">2018</div>
+                    <div class="mt-2 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">Inaugural award-winning harvest</div>
+                </div>
+            </div>
+
+            <div class="reveal font-body text-[1.18rem] font-normal leading-relaxed text-brand-chalk/82">
+                <p class="mb-5 font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">The Story Behind the Label</p>
+                <p class="mb-6">John Robinson bought the farm in 1989. It was his idea to plant vines. His daughter Laura took that idea and ran — planting 17,000 of them across twelve acres of some of Norfolk's finest free-draining chalk.</p>
+                <p class="mb-6">Four miles from the North Norfolk coast, an area of outstanding natural beauty. Glyphosate-free from the beginning. Wildlife-rich. Carefully tended.</p>
+                <p class="mb-6"><strong class="font-medium text-brand-chalk">This is a family who didn't compromise.</strong> The identity around their wines shouldn't either.</p>
+                <p>The proposed mark — the BV monogram — is designed to carry that weight. Quietly authoritative. Unambiguous at any size. As at home on a bottle neck label as it is on a cellar door sign.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         4. TYPOGRAPHY
+    ═══════════════════════════════════════════ -->
+    <section class="bg-brand-chalk px-8 py-32">
+        <div class="mx-auto max-w-[1080px]">
+            <div class="reveal">
+                <div class="estate-rule mb-5">
+                    <span class="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">Typography</span>
+                </div>
+                <h2 class="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight text-brand-vine mb-6">
+                    Type that carries <em class="italic text-brand-berry">quiet authority.</em>
+                </h2>
+                <p class="max-w-[580px] font-body text-[1.15rem] leading-relaxed text-brand-vine/70 mb-16">
+                    English wine has found its confidence. The type system proposed here reflects that — a classical display face with deep roots in English letterpress tradition, paired with a restrained geometric sans for labelling and navigation.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-px sm:grid-cols-2">
+                <div class="reveal bg-brand-vine p-14 text-brand-chalk">
+                    <p class="mb-7 font-sans text-[0.52rem] uppercase tracking-[0.42em] text-brand-gold">Display — Estate face</p>
+                    <p class="mb-6 font-display text-[clamp(1.9rem,3.5vw,2.9rem)] font-normal leading-tight">North Creake, Norfolk.<br/><em class="italic">Chalk & Flint.</em></p>
+                    <p class="font-sans text-[0.7rem] font-light uppercase tracking-[0.1em] leading-relaxed text-brand-chalk/50">Chardonnay · Pinot Noir · Bacchus · Solaris</p>
+                </div>
+                <div class="reveal bg-[#3A4F30] p-14 text-brand-chalk">
+                    <p class="mb-7 font-sans text-[0.52rem] uppercase tracking-[0.42em] text-brand-gold">Secondary — Label face</p>
+                    <p class="mb-6 font-sans text-[clamp(1.3rem,2.8vw,2rem)] font-light leading-tight uppercase tracking-wider">Burn Valley<br/>Estate Bacchus</p>
+                    <p class="font-sans text-[0.7rem] font-light uppercase tracking-[0.1em] leading-relaxed text-brand-chalk/50">Single Estate · Norfolk · 2023 Vintage</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         5. COLOUR PALETTE
+    ═══════════════════════════════════════════ -->
+    <section class="bg-brand-ink px-8 py-32 text-brand-chalk">
+        <div class="mx-auto max-w-[1080px]">
+            <div class="reveal">
+                <div class="estate-rule mb-5">
+                    <span class="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">Colour Palette</span>
+                </div>
+                <h2 class="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight mb-14">Drawn from <em class="italic text-brand-gold">the land itself.</em></h2>
+            </div>
+
+            <div class="flex h-[190px] gap-px swatch-row">
+                <div class="swatch-cell relative flex flex-1 items-end overflow-hidden p-5" style="background:#2D3D25"><span class="[writing-mode:vertical-lr] rotate-180 font-sans text-[0.55rem] uppercase tracking-[0.25em]" style="color:rgba(242,237,228,0.45)">Vineyard</span></div>
+                <div class="swatch-cell relative flex flex-1 items-end overflow-hidden p-5" style="background:#5C2D3E"><span class="[writing-mode:vertical-lr] rotate-180 font-sans text-[0.55rem] uppercase tracking-[0.25em]" style="color:rgba(242,237,228,0.45)">Berry</span></div>
+                <div class="swatch-cell relative flex flex-1 items-end overflow-hidden p-5" style="background:#F2EDE4"><span class="[writing-mode:vertical-lr] rotate-180 font-sans text-[0.55rem] uppercase tracking-[0.25em]" style="color:rgba(26,26,20,0.35)">Chalk</span></div>
+                <div class="swatch-cell relative flex flex-1 items-end overflow-hidden p-5" style="background:#A8864A"><span class="[writing-mode:vertical-lr] rotate-180 font-sans text-[0.55rem] uppercase tracking-[0.25em]" style="color:rgba(242,237,228,0.45)">Harvest</span></div>
+                <div class="swatch-cell relative flex flex-1 items-end overflow-hidden p-5" style="background:#B8C4A8"><span class="[writing-mode:vertical-lr] rotate-180 font-sans text-[0.55rem] uppercase tracking-[0.25em]" style="color:rgba(26,26,20,0.45)">Sage Mist</span></div>
+                <div class="swatch-cell relative flex flex-1 items-end overflow-hidden p-5" style="background:#1A1A14"><span class="[writing-mode:vertical-lr] rotate-180 font-sans text-[0.55rem] uppercase tracking-[0.25em]" style="color:rgba(242,237,228,0.35)">Ink</span></div>
+            </div>
+            <p class="mt-8 font-sans text-[0.65rem] font-light leading-relaxed text-brand-chalk/35 max-w-[480px]">Every colour is drawn from the vineyard's immediate world — the chalk soil, the dark berry, the Norfolk sky at dusk, the gold of a late summer harvest.</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         6. THE PROPOSED MARK
+    ═══════════════════════════════════════════ -->
+    <section class="bg-brand-chalk px-8 py-32">
+        <div class="mx-auto max-w-[1080px]">
+            <div class="reveal">
+                <div class="estate-rule mb-5">
+                    <span class="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">The Proposed Mark</span>
+                </div>
+                <h2 class="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight text-brand-vine mb-10">Authority at <em class="italic text-brand-berry">every scale.</em></h2>
+                <div class="mb-10 h-px w-10 bg-brand-gold opacity-60"></div>
+                <p class="max-w-[560px] font-body text-[1.15rem] leading-relaxed text-brand-vine/70">The BV monogram is designed to function as both primary mark and standalone device.</p>
+            </div>
+
+            <div class="mt-14 grid grid-cols-1 gap-px sm:grid-cols-2">
+                <div class="reveal flex flex-col items-center justify-center gap-8 py-20 px-12 border border-brand-vine/5" style="background:#F2EDE4">
+                    <div class="logo-mask w-[min(300px,68%)] aspect-[460/200] bg-[#2D3D25]"></div>
+                    <p class="font-sans text-[0.52rem] uppercase tracking-[0.38em] text-brand-vine/35">Chalk ground</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 py-20 px-12" style="background:#1A1A14">
+                    <div class="logo-mask w-[min(300px,68%)] aspect-[460/200] bg-[#F2EDE4]"></div>
+                    <p class="font-sans text-[0.52rem] uppercase tracking-[0.38em] text-brand-chalk/30">Dark ground</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 py-20 px-12" style="background:#2D3D25">
+                    <div class="logo-mask w-[min(300px,68%)] aspect-[460/200] bg-[#A8864A]"></div>
+                    <p class="font-sans text-[0.52rem] uppercase tracking-[0.38em] text-brand-chalk/30">Vineyard ground</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 py-20 px-12" style="background:#5C2D3E">
+                    <div class="logo-mask w-[min(300px,68%)] aspect-[460/200] bg-[#F2EDE4]"></div>
+                    <p class="font-sans text-[0.52rem] uppercase tracking-[0.38em] text-brand-chalk/30">Berry ground</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+         7. CTA
+    ═══════════════════════════════════════════ -->
+    <section class="relative grain overflow-hidden bg-brand-ink px-8 py-40 text-center">
+        <div class="pointer-events-none absolute inset-0" style="background: radial-gradient(ellipse at 50% 60%, rgba(45,61,37,0.45) 0%, transparent 70%);"></div>
+        <div class="mx-auto max-w-[640px] relative">
+            <div class="reveal">
+                <div class="flex items-center justify-center gap-3 mb-12 font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">
+                    <div class="flex-1 h-[0.5px] bg-brand-gold/40"></div>Burn Valley Vineyard<div class="flex-1 h-[0.5px] bg-brand-gold/40"></div>
+                </div>
+                <h2 class="font-display text-[clamp(2.2rem,5vw,3.4rem)] font-light leading-tight text-brand-chalk mb-8">This is what <em class="italic text-brand-gold">Burn Valley</em><br/>could look like.</h2>
+                <div class="mx-auto mb-12 h-px w-10 bg-brand-gold opacity-50"></div>
+                <p class="mx-auto mb-14 max-w-[440px] font-sans text-[0.75rem] font-light tracking-wide leading-relaxed text-brand-chalk/55">The concept above represents one considered direction for the estate.</p>
+                <p class="font-serif text-[1.05rem] italic text-brand-chalk/45">To discuss this concept, write to<br/><a href="mailto:stephen@brandarchitect.cc" class="text-brand-gold no-underline border-b border-brand-gold/35 transition-colors hover:opacity-80">stephen@brandarchitect.cc</a></p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="flex flex-wrap items-center justify-between gap-4 bg-brand-ink px-8 py-10 border-t border-brand-chalk/5">
+        <p class="font-sans text-[0.57rem] uppercase tracking-[0.32em] text-brand-chalk/25">© Brand Architect &nbsp;·&nbsp; brandarchitect.cc</p>
+        <p class="font-sans text-[0.57rem] uppercase tracking-[0.32em] text-brand-chalk/25">Where Brands Are Built with Purpose.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
