@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bush Barn Farm — Brand Identity Concept</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (v3 CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React, ReactDOM, and Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@11.0.0/dist/framer-motion.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ["'Playfair Display'", 'serif'],
+                        serif: ["'Cormorant Garamond'", 'serif'],
+                        body: ["'EB Garamond'", 'serif'],
+                        sans: ["'Jost'", 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            ink: '#1A1A1B',
+                            sage: '#5B6759',
+                            chalk: '#F2EDE4',
+                            parch: '#E8E0D0',
+                            berry: '#5C2D3E',
+                            mist: '#B8C4A8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F2EDE4;
+            color: #1A1A1B;
+            font-family: 'EB Garamond', serif;
+            margin: 0;
+        }
+
+        .grain::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.35;
+            mix-blend-mode: overlay;
+        }
+
+        .selection-sage::selection {
+            background-color: #5B6759;
+            color: #F2EDE4;
+        }
+    </style>
+</head>
+<body class="selection-sage">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { motion } = window.Motion;
+        const LogoUrl = "https://i.ibb.co/q3ZwVVfz/Bush-Barn-Farm-logo.png";
+
+        const Reveal = ({ children, delay = 0 }) => {
+            return (
+                <motion.div
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay }}
+                >
+                    {children}
+                </motion.div>
+            );
+        };
+
+        const Logo = ({ className = "", invert = false }) => {
+            return (
+                <img 
+                    src={LogoUrl} 
+                    alt="Bush Barn Farm Logo" 
+                    className={`object-contain ${className} ${invert ? "brightness-0 invert" : ""}`}
+                />
+            );
+        };
+
+        function App() {
+            return (
+                <div className="min-h-screen bg-brand-chalk font-body text-brand-ink">
+                    
+                    {/* ── HERO ── */}
+                    <section className="relative grain flex min-h-screen flex-col items-center justify-center overflow-hidden bg-brand-chalk px-8 py-24 text-center">
+                        <div className="pointer-events-none absolute inset-0"
+                             style={{ background: `radial-gradient(ellipse at 55% 35%, rgba(91,103,89,0.15) 0%, transparent 65%), radial-gradient(ellipse at 20% 75%, rgba(184,196,168,0.12) 0%, transparent 55%)` }}></div>
+
+                        <Reveal>
+                            <p className="font-sans text-[0.9rem] font-light uppercase tracking-[0.4em] text-brand-sage mb-14">
+                                Brand Identity Concept &nbsp;·&nbsp; Bush Barn Farm
+                            </p>
+                        </Reveal>
+
+                        <Reveal delay={0.2}>
+                            <div className="w-[min(690px,92vw)] aspect-[460/200] filter drop-shadow-[0_24px_64px_rgba(0,0,0,0.08)]">
+                                <Logo className="w-full h-full" />
+                            </div>
+                        </Reveal>
+
+                        <Reveal delay={0.4}>
+                            <div className="mx-auto my-16 h-[84px] w-px"
+                                 style={{ background: `linear-gradient(to bottom, transparent, #5B6759, transparent)` }}></div>
+                        </Reveal>
+
+                        <Reveal delay={0.6}>
+                            <p className="font-serif text-[clamp(1.8rem,3.6vw,2.6rem)] font-light italic leading-relaxed text-brand-ink max-w-[690px]">
+                                Twenty-five acres of organic elder trees. Award-winning cordials. A family's East Sussex legacy.
+                            </p>
+                        </Reveal>
+
+                        <Reveal delay={0.8}>
+                            <p className="mt-7 font-sans text-[0.87rem] uppercase tracking-[0.35em] text-brand-ink/35">Where Brands Are Built with Purpose</p>
+                        </Reveal>
+
+                        <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+                            <span className="font-sans text-[0.82rem] uppercase tracking-[0.35em] text-brand-ink/25">Explore</span>
+                            <div className="w-px h-12 bg-gradient-to-b from-brand-sage to-transparent animate-pulse"></div>
+                        </div>
+                    </section>
+
+                    {/* ── THE OPPORTUNITY ── */}
+                    <section className="mx-auto max-w-[1080px] px-8 py-28">
+                        <Reveal>
+                            <div className="flex items-center gap-2.5 mb-5">
+                                <div className="w-7 h-[0.5px] bg-brand-sage"></div>
+                                <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-sage">The Opportunity</span>
+                            </div>
+                            <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-[1.18] text-brand-ink mb-10">
+                                An organic orchard of genuine distinction —<br/>
+                                <em className="text-brand-sage italic">deserving an identity to match.</em>
+                            </h2>
+                            <div className="mb-10 h-px w-10 bg-brand-sage opacity-60"></div>
+                            <p className="max-w-[580px] font-body text-[1.15rem] font-normal leading-relaxed text-brand-ink/70">
+                                Bush Barn Farm is a family-run organic farm in Robertsbridge, East Sussex. With 25 acres of elder trees, they produce the finest organic elderflowers and elderberries. Their award-winning cordials are a testament to their dedication, yet their digital presence doesn't yet reflect the premium, artisanal quality of their harvest.
+                            </p>
+                        </Reveal>
+
+                        <div className="mt-16 grid grid-cols-1 gap-px sm:grid-cols-2">
+                            {[
+                                { 
+                                    num: "01", 
+                                    title: "The Current Mark", 
+                                    body: "Their existing branding is functional but lacks the 'estate' authority that a 25-acre organic orchard commands. It needs a mark that feels as premium as the Great Taste awards they've won.",
+                                    bg: "bg-brand-parch"
+                                },
+                                { 
+                                    num: "02", 
+                                    title: "The Digital Presence", 
+                                    body: "The current Shopify-led experience is product-heavy but story-light. Visitors should feel the East Sussex terroir and the organic commitment before they reach the checkout.",
+                                    bg: "bg-brand-parch/60"
+                                },
+                                { 
+                                    num: "03", 
+                                    title: "The Award Opportunity", 
+                                    body: "With multiple Great Taste awards, the branding should lead with this excellence. The 'Organic' status is a major market differentiator that needs to be communicated with more visual weight.",
+                                    bg: "bg-brand-parch/30"
+                                },
+                                { 
+                                    num: "04", 
+                                    title: "The Provenance Signal", 
+                                    body: "Robertsbridge, East Sussex. 25 acres. Small-batch. These are the signals that premium buyers look for. They shouldn't be buried in the footer; they should be the headline.",
+                                    bg: "bg-brand-chalk"
+                                }
+                            ].map((item, i) => (
+                                <Reveal key={i}>
+                                    <div className={`relative overflow-hidden ${item.bg} p-11 text-brand-ink h-full border border-brand-ink/5`}>
+                                        <div className="absolute left-0 top-0 h-full w-[2px] bg-brand-sage opacity-70"></div>
+                                        <span className="absolute right-5 top-2 font-serif text-[6rem] font-light leading-none text-brand-ink/5 pointer-events-none select-none">{item.num}</span>
+                                        <p className="mb-4 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-sage">{item.title}</p>
+                                        <p className="font-body text-[1.1rem] leading-relaxed text-brand-ink/80">
+                                            {item.body}
+                                        </p>
+                                    </div>
+                                </Reveal>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* ── THE ESTATE ── */}
+                    <section className="relative grain overflow-hidden bg-brand-parch px-8 py-32 text-brand-ink">
+                        <div className="mx-auto grid max-w-[1080px] grid-cols-1 items-start gap-20 md:grid-cols-2">
+                            
+                            {/* Stats */}
+                            <div className="flex flex-col gap-12">
+                                {[
+                                    { val: "25", label: "Acres of organic elder trees" },
+                                    { val: "100%", label: "Certified organic since planting" },
+                                    { val: "Award", label: "Great Taste award-winning cordials" },
+                                    { val: "Sussex", label: "The heart of Robertsbridge" }
+                                ].map((stat, i) => (
+                                    <Reveal key={i} delay={i * 0.1}>
+                                        <div className="border-l-[1.5px] border-brand-sage pl-6">
+                                            <div className="font-display text-[clamp(2.8rem,5.5vw,4.2rem)] font-normal leading-none text-brand-ink">{stat.val}</div>
+                                            <div className="mt-2 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-sage">{stat.label}</div>
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
+
+                            {/* Narrative */}
+                            <Reveal>
+                                <div className="font-body text-[1.18rem] font-normal leading-relaxed text-brand-ink/82">
+                                    <p className="mb-5 font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-sage">The Story Behind the Harvest</p>
+                                    <p className="mb-6">
+                                        Bush Barn Farm is more than just an orchard; it's a commitment to the land. Twenty-five acres of elder trees, tended with organic principles in the rolling hills of Robertsbridge.
+                                    </p>
+                                    <p className="mb-6">
+                                        From fresh elderflowers in season to frozen elderberries and their signature cordials, every product is a reflection of the East Sussex soil and the family's quiet dedication to quality.
+                                    </p>
+                                    <p className="mb-6">
+                                        <strong className="font-medium text-brand-ink">This is a family who didn't compromise.</strong> The identity around their harvest shouldn't either.
+                                    </p>
+                                    <p>
+                                        The proposed mark — the Bush Barn Farm seal — is designed to carry that weight. Quietly authoritative. Unambiguous at any size. As at home on a cordial bottle as it is on a farm gate sign.
+                                    </p>
+                                </div>
+                            </Reveal>
+                        </div>
+                    </section>
+
+                    {/* ── TYPOGRAPHY ── */}
+                    <section className="bg-brand-chalk px-8 py-32">
+                        <div className="mx-auto max-w-[1080px]">
+                            <Reveal>
+                                <div className="flex items-center gap-2.5 mb-5">
+                                    <div className="w-7 h-[0.5px] bg-brand-sage"></div>
+                                    <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-sage">Typography</span>
+                                </div>
+                                <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight text-brand-ink mb-6">
+                                    Type that carries <em className="italic text-brand-sage">artisanal authority.</em>
+                                </h2>
+                                <p className="max-w-[580px] font-body text-[1.15rem] leading-relaxed text-brand-ink/70 mb-16">
+                                    The Bush Barn Farm identity requires a balance of heritage and modernity. The type system proposed here reflects that — a classical display face with deep roots, paired with a restrained geometric sans for clarity and navigation.
+                                </p>
+                            </Reveal>
+
+                            <div className="grid grid-cols-1 gap-px sm:grid-cols-2">
+                                <Reveal>
+                                    <div className="bg-brand-parch p-14 text-brand-ink h-full border border-brand-ink/5">
+                                        <p className="mb-7 font-sans text-[0.52rem] uppercase tracking-[0.42em] text-brand-sage">Display — Estate face</p>
+                                        <p className="mb-6 font-display text-[clamp(1.9rem,3.5vw,2.9rem)] font-normal leading-tight">
+                                            Robertsbridge, Sussex.<br/>
+                                            <em className="italic">Organic Elderflower.</em>
+                                        </p>
+                                        <p className="font-sans text-[0.7rem] font-light uppercase tracking-[0.1em] leading-relaxed text-brand-ink/50">
+                                            Elderflower · Elderberry · Organic · Small Batch
+                                        </p>
+                                    </div>
+                                </Reveal>
+                                <Reveal>
+                                    <div className="bg-brand-chalk p-14 text-brand-ink h-full border border-brand-ink/5">
+                                        <p className="mb-7 font-sans text-[0.52rem] uppercase tracking-[0.42em] text-brand-sage">Secondary — Label face</p>
+                                        <p className="mb-6 font-sans text-[clamp(1.3rem,2.8vw,2rem)] font-light leading-tight uppercase tracking-wider">
+                                            Bush Barn Farm<br/>
+                                            Organic Cordial
+                                        </p>
+                                        <p className="font-sans text-[0.7rem] font-light uppercase tracking-[0.1em] leading-relaxed text-brand-ink/50">
+                                            Single Estate · East Sussex · Award Winning
+                                        </p>
+                                    </div>
+                                </Reveal>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ── COLOUR PALETTE ── */}
+                    <section className="bg-brand-chalk px-8 py-32 text-brand-ink">
+                        <div className="mx-auto max-w-[1080px]">
+                            <Reveal>
+                                <div className="flex items-center gap-2.5 mb-5">
+                                    <div className="w-7 h-[0.5px] bg-brand-sage"></div>
+                                    <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-sage">Colour Palette</span>
+                                </div>
+                                <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight mb-14 text-brand-ink">
+                                    Drawn from <em className="italic text-brand-sage">the land itself.</em>
+                                </h2>
+                            </Reveal>
+
+                            <div className="flex h-[190px] gap-px group/swatch border border-brand-ink/5">
+                                {[
+                                    { name: "English Sage", hex: "#5B6759", textColor: "rgba(242,237,228,0.45)" },
+                                    { name: "Elderberry", hex: "#5C2D3E", textColor: "rgba(242,237,228,0.45)" },
+                                    { name: "Chalk", hex: "#F2EDE4", textColor: "rgba(26,26,27,0.35)" },
+                                    { name: "Harvest Gold", hex: "#A8864A", textColor: "rgba(242,237,228,0.45)" },
+                                    { name: "Sage Mist", hex: "#B8C4A8", textColor: "rgba(26,26,27,0.45)" },
+                                    { name: "Obsidian Ink", hex: "#1A1A1B", textColor: "rgba(242,237,228,0.35)" }
+                                ].map((swatch, i) => (
+                                    <div 
+                                        key={i} 
+                                        className="relative flex flex-1 items-end overflow-hidden p-5 transition-[flex] duration-500 ease-out hover:flex-[2.8]" 
+                                        style={{ backgroundColor: swatch.hex }}
+                                    >
+                                        <span className="[writing-mode:vertical-lr] rotate-180 font-sans text-[0.55rem] uppercase tracking-[0.25em]" style={{ color: swatch.textColor }}>
+                                            {swatch.name}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <p className="mt-8 font-sans text-[0.65rem] font-light leading-relaxed text-brand-ink/35 max-w-[480px]">
+                                Every colour is drawn from the farm's immediate world — the chalk soil, the deep elderberry, the Sussex sky at dusk, the gold of a late summer harvest. Nothing arbitrary. Nothing generic.
+                            </p>
+                        </div>
+                    </section>
+
+                    {/* ── THE PROPOSED MARK ── */}
+                    <section className="bg-brand-chalk px-8 py-32">
+                        <div className="mx-auto max-w-[1080px]">
+                            <Reveal>
+                                <div className="flex items-center gap-2.5 mb-5">
+                                    <div className="w-7 h-[0.5px] bg-brand-sage"></div>
+                                    <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-sage">The Proposed Mark</span>
+                                </div>
+                                <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight text-brand-ink mb-10">
+                                    Authority at <em className="italic text-brand-sage">every scale.</em>
+                                </h2>
+                                <div className="mb-10 h-px w-10 bg-brand-sage opacity-60"></div>
+                                <p className="max-w-[560px] font-body text-[1.15rem] leading-relaxed text-brand-ink/70">
+                                    The Bush Barn Farm mark is designed to function as a seal of quality. From a small cordial bottle neck to a large farm gate sign, it remains clear, authoritative, and elegant.
+                                </p>
+                            </Reveal>
+
+                            <div className="mt-14 grid grid-cols-1 gap-px sm:grid-cols-2">
+                                {[
+                                    { name: "Primary Logo", bg: "#F2EDE4", labelColor: "text-brand-ink/35", invert: false },
+                                    { name: "Ink ground", bg: "#1A1A1B", labelColor: "text-brand-chalk/30", invert: true },
+                                    { name: "Sage ground", bg: "#5B6759", labelColor: "text-brand-chalk/30", invert: true },
+                                    { name: "Sage Light", bg: "#B8C4A8", labelColor: "text-brand-ink/30", invert: false }
+                                ].map((item, i) => (
+                                    <Reveal key={i}>
+                                        <div className="flex flex-col items-center justify-center gap-8 py-20 px-12 border border-brand-ink/5" style={{ backgroundColor: item.bg }}>
+                                            <div className="w-[min(300px,68%)] aspect-[460/200]">
+                                                <Logo className="w-full h-full" invert={item.invert} />
+                                            </div>
+                                            <p className={`font-sans text-[0.52rem] uppercase tracking-[0.38em] ${item.labelColor}`}>{item.name}</p>
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ── WHAT'S INCLUDED ── */}
+                    <section className="bg-brand-chalk px-8 py-32 text-brand-ink">
+                        <div className="mx-auto max-w-[1080px]">
+                            <Reveal>
+                                <div className="flex items-center gap-2.5 mb-5">
+                                    <div className="w-7 h-[0.5px] bg-brand-sage"></div>
+                                    <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-sage">The Full Package</span>
+                                </div>
+                                <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight mb-16 text-brand-ink">
+                                    Everything the estate <em className="italic text-brand-sage">needs.</em>
+                                </h2>
+                            </Reveal>
+
+                            <div className="grid grid-cols-1 gap-px sm:grid-cols-3">
+                                {[
+                                    { 
+                                        num: "I", 
+                                        title: "Identity", 
+                                        body: "Primary logomark, secondary seal device, reversed and single-colour versions, clear space and minimum size guidelines.",
+                                        opacity: "bg-brand-parch"
+                                    },
+                                    { 
+                                        num: "II", 
+                                        title: "System", 
+                                        body: "Colour palette, typography hierarchy, brand voice guidance, and a concise brand standards document for the team and printers.",
+                                        opacity: "bg-brand-parch/60"
+                                    },
+                                    { 
+                                        num: "III", 
+                                        title: "Application", 
+                                        body: "Label design direction, digital assets sized for web and social, and packaging guidance across the cordial range.",
+                                        opacity: "bg-brand-parch/30"
+                                    }
+                                ].map((item, i) => (
+                                    <Reveal key={i} delay={i * 0.1}>
+                                        <div className={`${item.opacity} p-10 h-full border border-brand-ink/5`}>
+                                            <div className="mb-6 font-display text-[2.2rem] font-normal text-brand-sage leading-none">{item.num}</div>
+                                            <p className="mb-3 font-sans text-[0.62rem] uppercase tracking-[0.3em] text-brand-sage">{item.title}</p>
+                                            <p className="font-body text-[1rem] leading-relaxed text-brand-ink/70">
+                                                {item.body}
+                                            </p>
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ── CTA ── */}
+                    <section className="relative grain overflow-hidden bg-brand-parch px-8 py-40 text-center">
+                        <div className="pointer-events-none absolute inset-0"
+                             style={{ background: `radial-gradient(ellipse at 50% 60%, rgba(91,103,89,0.15) 0%, transparent 70%)` }}></div>
+
+                        <div className="mx-auto max-w-[640px] relative">
+                            <Reveal>
+                                <div className="flex items-center justify-center gap-3 mb-12 font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-sage">
+                                    <div className="flex-1 h-[0.5px] bg-brand-sage/40"></div>
+                                    Bush Barn Farm
+                                    <div className="flex-1 h-[0.5px] bg-brand-sage/40"></div>
+                                </div>
+
+                                <h2 className="font-display text-[clamp(2.2rem,5vw,3.4rem)] font-light leading-tight text-brand-ink mb-8">
+                                    This is what <em className="italic text-brand-sage">Bush Barn Farm</em><br/>could look like.
+                                </h2>
+
+                                <div className="mx-auto mb-12 h-px w-10 bg-brand-sage opacity-50"></div>
+
+                                <p className="mx-auto mb-14 max-w-[440px] font-sans text-[0.75rem] font-light tracking-wide leading-relaxed text-brand-ink/55">
+                                    The concept above represents one considered direction for the farm. A full brand identity package delivers every asset the orchard needs — from farm shop signage to award-winning labels to a premium digital presence.
+                                </p>
+
+                                <p className="font-serif text-[1.05rem] italic text-brand-ink/45">
+                                    To discuss this concept, write to<br/>
+                                    <a href="mailto:stephen@brandarchitect.cc"
+                                       className="text-brand-sage no-underline border-b border-brand-sage/35 transition-colors hover:opacity-80">
+                                        stephen@brandarchitect.cc
+                                    </a>
+                                </p>
+                            </Reveal>
+                        </div>
+                    </section>
+
+                    {/* ── FOOTER ── */}
+                    <footer className="flex flex-wrap items-center justify-between gap-4 bg-brand-chalk px-8 py-10 border-t border-brand-ink/5">
+                        <p className="font-sans text-[0.57rem] uppercase tracking-[0.32em] text-brand-ink/25">
+                            © Brand Architect &nbsp;·&nbsp; <strong className="text-brand-sage/60">brandarchitect.cc</strong>
+                        </p>
+                        <p className="font-sans text-[0.57rem] uppercase tracking-[0.32em] text-brand-ink/25">
+                            Bush Barn Farm — Built with Purpose.
+                        </p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
