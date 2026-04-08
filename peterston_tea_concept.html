@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peterston Tea — Brand Identity Concept</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        serif: ["Cormorant Garamond", "serif"],
+                        body: ["EB Garamond", "serif"],
+                        sans: ["Jost", "sans-serif"],
+                    },
+                    colors: {
+                        brand: {
+                            ink: "#020F08",
+                            forest: "#041E10",
+                            moss: "#3D4F35",
+                            chalk: "#F7F5F0",
+                            slate: "#4A5552",
+                            clay: "#8C735A",
+                            gold: "#C4A46D",
+                            mist: "#D1D9D0",
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Grain effect */
+        .grain::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.35;
+            mix-blend-mode: overlay;
+        }
+
+        /* Logo mask effect */
+        .logo-mask {
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            display: inline-block;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body {
+            background-color: #F7F5F0;
+            color: #020F08;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- React & Babel CDNs -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useEffect, useRef } = React;
+
+        const LogoUrl = "https://i.ibb.co/xqzmjpyQ/Peterston-Tea-2-logo.png";
+
+        // Reveal component using Intersection Observer
+        const Reveal = ({ children, delay = 0 }) => {
+            const ref = useRef(null);
+
+            useEffect(() => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, delay * 1000);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                if (ref.current) observer.observe(ref.current);
+                return () => observer.disconnect();
+            }, [delay]);
+
+            return (
+                <div ref={ref} className="reveal">
+                    {children}
+                </div>
+            );
+        };
+
+        const Logo = ({ className = "", color = "#F7F5F0" }) => {
+            return (
+                <div 
+                    className={`logo-mask ${className}`}
+                    style={{ 
+                        maskImage: `url(${LogoUrl})`,
+                        WebkitMaskImage: `url(${LogoUrl})`,
+                        backgroundColor: color
+                    }}
+                />
+            );
+        };
+
+        function App() {
+            return (
+                <div className="min-h-screen bg-brand-chalk font-body text-brand-ink">
+                    
+                    {/* ── HERO ── */}
+                    <section className="relative grain flex min-h-screen flex-col items-center justify-center overflow-hidden bg-brand-forest px-8 py-24 text-center">
+                        <div className="pointer-events-none absolute inset-0"
+                             style={{ background: `radial-gradient(ellipse at 55% 35%, rgba(4,30,16,0.55) 0%, transparent 65%), radial-gradient(ellipse at 20% 75%, rgba(140,115,90,0.12) 0%, transparent 55%)` }}></div>
+
+                        <Reveal>
+                            <p className="font-sans text-[0.9rem] font-light uppercase tracking-[0.4em] text-brand-gold mb-14">
+                                Brand Identity Concept &nbsp;·&nbsp; Peterston Tea
+                            </p>
+                        </Reveal>
+
+                        <Reveal delay={0.2}>
+                            <div className="w-[min(720px,92vw)] aspect-[460/200] filter drop-shadow-[0_24px_64px_rgba(0,0,0,0.65)]">
+                                <Logo className="w-full h-full" color="#F7F5F0" />
+                            </div>
+                        </Reveal>
+
+                        <Reveal delay={0.4}>
+                            <div className="mx-auto my-16 h-[84px] w-px bg-gradient-to-b from-transparent via-brand-gold to-transparent"></div>
+                        </Reveal>
+
+                        <Reveal delay={0.6}>
+                            <p className="font-serif text-[clamp(1.8rem,3.6vw,2.6rem)] font-light italic leading-relaxed text-brand-chalk max-w-[690px]">
+                                The first tea plantation in Wales. Single estate. Organic. A vision of quiet persistence.
+                            </p>
+                        </Reveal>
+
+                        <Reveal delay={0.8}>
+                            <p className="mt-7 font-sans text-[0.87rem] uppercase tracking-[0.35em] text-brand-chalk/35">Where Brands Are Built with Purpose</p>
+                        </Reveal>
+
+                        <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+                            <span className="font-sans text-[0.82rem] uppercase tracking-[0.35em] text-brand-chalk/25">Explore</span>
+                            <div className="w-px h-12 bg-gradient-to-b from-brand-gold to-transparent opacity-50"></div>
+                        </div>
+                    </section>
+
+                    {/* ── THE OPPORTUNITY ── */}
+                    <section className="mx-auto max-w-[1080px] px-8 py-28">
+                        <Reveal>
+                            <div className="flex items-center gap-2.5 mb-5">
+                                <div className="w-7 h-[0.5px] bg-brand-gold"></div>
+                                <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">The Opportunity</span>
+                            </div>
+                            <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-[1.18] text-brand-forest mb-10">
+                                A Welsh estate of genuine rarity —<br/>
+                                <em className="text-brand-clay italic">deserving an identity to match.</em>
+                            </h2>
+                            <div className="mb-10 h-px w-10 bg-brand-gold opacity-60"></div>
+                            <p className="max-w-[580px] font-body text-[1.15rem] font-normal leading-relaxed text-brand-forest/70">
+                                Peterston Tea is a pioneer. In the Vale of Glamorgan, Lucy George has achieved what many thought impossible: growing exceptional, award-winning tea in Welsh soil. The brand should reflect this pioneering spirit with the sophistication of a global luxury house.
+                            </p>
+                        </Reveal>
+
+                        <div className="mt-16 grid grid-cols-1 gap-px sm:grid-cols-2">
+                            {[
+                                { num: "01", title: "The Identity Split", body: "The current brand feels divided between raw tea, premium kombucha, and farm workshops. A unified 'Peterston' authority is needed.", bg: "bg-brand-forest" },
+                                { num: "02", title: "The Welsh Signal", body: "Being the first tea plantation in Wales is a massive USP. It should be the first thing a visitor feels: the unique provenance of the Vale.", bg: "bg-[#062614]" },
+                                { num: "03", title: "Digital Friction", body: "The online shop experience doesn't yet match the premium nature of a £20+ tin. The digital journey should feel as considered as the tea.", bg: "bg-[#082E18]" },
+                                { num: "04", title: "Visual Noise", body: "A 'quiet authority'—minimal, refined, and focused—will allow the quality of the tea to lead the conversation.", bg: "bg-[#0A361C]" }
+                            ].map((item, i) => (
+                                <Reveal key={i} delay={i * 0.1}>
+                                    <div className={`relative overflow-hidden ${item.bg} p-11 text-brand-chalk h-full`}>
+                                        <div className="absolute left-0 top-0 h-full w-[2px] bg-brand-gold opacity-70"></div>
+                                        <span className="absolute right-5 top-2 font-serif text-[6rem] font-light leading-none text-brand-chalk/5 pointer-events-none select-none">{item.num}</span>
+                                        <p className="mb-4 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">{item.title}</p>
+                                        <p className="font-body text-[1.1rem] leading-relaxed text-brand-chalk/80">{item.body}</p>
+                                    </div>
+                                </Reveal>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* ── THE ESTATE ── */}
+                    <section className="relative grain overflow-hidden bg-brand-forest px-8 py-32 text-brand-chalk">
+                        <div className="mx-auto grid max-w-[1080px] grid-cols-1 items-start gap-20 md:grid-cols-2">
+                            <div className="flex flex-col gap-12">
+                                {[
+                                    { val: "1st", label: "Tea plantation in Wales" },
+                                    { val: "100%", label: "Certified Organic" },
+                                    { val: "Single", label: "Estate provenance" },
+                                    { val: "4th", label: "Generation family farm" }
+                                ].map((stat, i) => (
+                                    <Reveal key={i} delay={i * 0.1}>
+                                        <div className="border-l-[1.5px] border-brand-gold pl-6">
+                                            <div className="font-display text-[clamp(2.8rem,5.5vw,4.2rem)] font-normal leading-none">{stat.val}</div>
+                                            <div className="mt-2 font-sans text-[0.58rem] uppercase tracking-[0.35em] text-brand-gold">{stat.label}</div>
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
+                            <Reveal>
+                                <div className="font-body text-[1.18rem] font-normal leading-relaxed text-brand-chalk/82">
+                                    <p className="mb-5 font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">The Vision of Lucy George</p>
+                                    <p className="mb-6">Lucy George is a fourth-generation farmer who saw the potential in the Welsh landscape for something truly unique. In 2014, she planted the first tea seeds at Peterston.</p>
+                                    <p className="mb-6">Every leaf is hand-plucked and processed on the farm. This is single-estate tea in its purest form—unblended, organic, and deeply connected to the land.</p>
+                                    <p className="mb-6"><strong className="font-medium text-brand-chalk">This is a brand built on patience.</strong> The identity should reflect that slow, considered craft.</p>
+                                    <p>The proposed identity celebrates the 'Peterston' name as a mark of origin. It is designed to be as at home on a high-end department store shelf as it is on the farm gate.</p>
+                                </div>
+                            </Reveal>
+                        </div>
+                    </section>
+
+                    {/* ── TYPOGRAPHY ── */}
+                    <section className="bg-brand-chalk px-8 py-32">
+                        <div className="mx-auto max-w-[1080px]">
+                            <Reveal>
+                                <div className="flex items-center gap-2.5 mb-5">
+                                    <div className="w-7 h-[0.5px] bg-brand-gold"></div>
+                                    <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">Typography</span>
+                                </div>
+                                <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight text-brand-forest mb-6">
+                                    Type that reflects <em className="italic text-brand-clay">organic heritage.</em>
+                                </h2>
+                                <p className="max-w-[580px] font-body text-[1.15rem] leading-relaxed text-brand-forest/70 mb-16">
+                                    Welsh tea is a story of provenance. The typography proposed here balances the classical elegance of a heritage estate with the clean, modern lines of a contemporary wellness brand.
+                                </p>
+                            </Reveal>
+
+                            <div className="grid grid-cols-1 gap-px sm:grid-cols-2">
+                                <Reveal>
+                                    <div className="bg-brand-forest p-14 text-brand-chalk h-full">
+                                        <p className="mb-7 font-sans text-[0.52rem] uppercase tracking-[0.42em] text-brand-gold">Display — Estate face</p>
+                                        <p className="mb-6 font-display text-[clamp(1.9rem,3.5vw,2.9rem)] font-normal leading-tight">
+                                            Vale of Glamorgan.<br/>
+                                            <em className="italic">Welsh Landscape.</em>
+                                        </p>
+                                        <p className="font-sans text-[0.7rem] font-light uppercase tracking-[0.1em] leading-relaxed text-brand-chalk/50">
+                                            Black Tea · Green Tea · Kombucha · Workshops
+                                        </p>
+                                    </div>
+                                </Reveal>
+                                <Reveal>
+                                    <div className="bg-[#062614] p-14 text-brand-chalk h-full">
+                                        <p className="mb-7 font-sans text-[0.52rem] uppercase tracking-[0.42em] text-brand-gold">Secondary — Label face</p>
+                                        <p className="mb-6 font-sans text-[clamp(1.3rem,2.8vw,2rem)] font-light leading-tight uppercase tracking-wider">
+                                            Peterston<br/>
+                                            Single Estate
+                                        </p>
+                                        <p className="font-sans text-[0.7rem] font-light uppercase tracking-[0.1em] leading-relaxed text-brand-chalk/50">
+                                            Hand-Plucked · Organic · Wales · 2024
+                                        </p>
+                                    </div>
+                                </Reveal>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ── COLOUR PALETTE ── */}
+                    <section className="bg-brand-ink px-8 py-32 text-brand-chalk">
+                        <div className="mx-auto max-w-[1080px]">
+                            <Reveal>
+                                <div className="flex items-center gap-2.5 mb-5">
+                                    <div className="w-7 h-[0.5px] bg-brand-gold"></div>
+                                    <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">Colour Palette</span>
+                                </div>
+                                <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight mb-14">
+                                    Drawn from <em className="italic text-brand-gold">the Welsh landscape.</em>
+                                </h2>
+                            </Reveal>
+
+                            <div className="flex h-[190px] gap-px">
+                                {[
+                                    { name: "Forest", hex: "#041E10", textColor: "rgba(247,245,240,0.45)" },
+                                    { name: "Moss", hex: "#3D4F35", textColor: "rgba(247,245,240,0.45)" },
+                                    { name: "Chalk", hex: "#F7F5F0", textColor: "rgba(2,15,8,0.35)" },
+                                    { name: "Gold", hex: "#C4A46D", textColor: "rgba(247,245,240,0.45)" },
+                                    { name: "Slate", hex: "#4A5552", textColor: "rgba(247,245,240,0.45)" },
+                                    { name: "Ink", hex: "#020F08", textColor: "rgba(247,245,240,0.35)" }
+                                ].map((swatch, i) => (
+                                    <div key={i} className="relative flex flex-1 items-end overflow-hidden p-5 transition-all duration-500 hover:flex-[2.5]" style={{ backgroundColor: swatch.hex }}>
+                                        <span className="[writing-mode:vertical-lr] rotate-180 font-sans text-[0.55rem] uppercase tracking-[0.25em]" style={{ color: swatch.textColor }}>{swatch.name}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ── THE PROPOSED MARK ── */}
+                    <section className="bg-brand-chalk px-8 py-32">
+                        <div className="mx-auto max-w-[1080px]">
+                            <Reveal>
+                                <div className="flex items-center gap-2.5 mb-5">
+                                    <div className="w-7 h-[0.5px] bg-brand-gold"></div>
+                                    <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">The Proposed Mark</span>
+                                </div>
+                                <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight text-brand-forest mb-10">
+                                    Authority at <em className="italic text-brand-clay">every scale.</em>
+                                </h2>
+                                <p className="max-w-[560px] font-body text-[1.15rem] leading-relaxed text-brand-forest/70">The Peterston mark is designed to function as a seal of quality. Whether embossed on a premium tin or used as a digital favicon, it carries the weight of the estate's reputation.</p>
+                            </Reveal>
+
+                            <div className="mt-14 grid grid-cols-1 gap-px sm:grid-cols-2">
+                                {[
+                                    { name: "Chalk ground", bg: "#F7F5F0", logoColor: "#041E10", textColor: "text-brand-forest/35" },
+                                    { name: "Dark ground", bg: "#020F08", logoColor: "#F7F5F0", textColor: "text-brand-chalk/30" },
+                                    { name: "Forest ground", bg: "#041E10", logoColor: "#C4A46D", textColor: "text-brand-chalk/30" },
+                                    { name: "Clay ground", bg: "#8C735A", logoColor: "#F7F5F0", textColor: "text-brand-chalk/30" }
+                                ].map((item, i) => (
+                                    <Reveal key={i}>
+                                        <div className="flex flex-col items-center justify-center gap-8 py-20 px-12 border border-brand-forest/5" style={{ backgroundColor: item.bg }}>
+                                            <div className="w-[min(320px,72%)] aspect-[460/200]">
+                                                <Logo className="w-full h-full" color={item.logoColor} />
+                                            </div>
+                                            <p className={`font-sans text-[0.52rem] uppercase tracking-[0.38em] ${item.textColor}`}>{item.name}</p>
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ── WHAT'S INCLUDED ── */}
+                    <section className="bg-brand-forest px-8 py-32 text-brand-chalk">
+                        <div className="mx-auto max-w-[1080px]">
+                            <Reveal>
+                                <div className="flex items-center gap-2.5 mb-5">
+                                    <div className="w-7 h-[0.5px] bg-brand-gold"></div>
+                                    <span className="font-sans text-[0.58rem] uppercase tracking-[0.42em] text-brand-gold">The Full Package</span>
+                                </div>
+                                <h2 className="font-display text-[clamp(2rem,3.8vw,2.9rem)] leading-tight mb-16">
+                                    Everything the estate <em className="italic text-brand-gold">needs.</em>
+                                </h2>
+                            </Reveal>
+
+                            <div className="grid grid-cols-1 gap-px sm:grid-cols-3">
+                                {[
+                                    { 
+                                        num: "I", 
+                                        title: "Identity", 
+                                        body: "Primary logomark, PT monogram device, reversed and single-colour versions, clear space and minimum size guidelines.",
+                                        opacity: "bg-brand-ink/40"
+                                    },
+                                    { 
+                                        num: "II", 
+                                        title: "System", 
+                                        body: "Colour palette, typography hierarchy, brand voice guidance, and a concise brand standards document for the team and printers.",
+                                        opacity: "bg-brand-ink/55"
+                                    },
+                                    { 
+                                        num: "III", 
+                                        title: "Application", 
+                                        body: "Label design direction, digital assets sized for web and social, and packaging guidance across the tea range.",
+                                        opacity: "bg-brand-ink/70"
+                                    }
+                                ].map((item, i) => (
+                                    <Reveal key={i} delay={i * 0.1}>
+                                        <div className={`${item.opacity} p-10 h-full`}>
+                                            <div className="mb-6 font-display text-[2.2rem] font-normal text-brand-gold leading-none">{item.num}</div>
+                                            <p className="mb-3 font-sans text-[0.62rem] uppercase tracking-[0.3em] text-brand-gold">{item.title}</p>
+                                            <p className="font-body text-[1rem] leading-relaxed text-brand-chalk/70">
+                                                {item.body}
+                                            </p>
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ── CTA ── */}
+                    <section className="relative grain overflow-hidden bg-brand-ink px-8 py-40 text-center">
+                        <div className="pointer-events-none absolute inset-0" style={{ background: `radial-gradient(ellipse at 50% 60%, rgba(4,30,16,0.45) 0%, transparent 70%)` }}></div>
+                        <div className="mx-auto max-w-[640px] relative">
+                            <Reveal>
+                                <h2 className="font-display text-[clamp(2.2rem,5vw,3.4rem)] font-light leading-tight text-brand-chalk mb-8">
+                                    This is what <em className="italic text-brand-gold">Peterston Tea</em><br/>could look like.
+                                </h2>
+                                <p className="mx-auto mb-14 max-w-[440px] font-sans text-[0.75rem] font-light tracking-wide leading-relaxed text-brand-chalk/55">The concept above represents a considered direction for the estate. A full brand identity package delivers every asset the farm needs.</p>
+                                <p className="font-serif text-[1.05rem] italic text-brand-chalk/45">To discuss this concept, write to<br/>
+                                    <a href="mailto:stephen@brandarchitect.cc" className="text-brand-gold no-underline border-b border-brand-gold/35 hover:opacity-80 transition-opacity">stephen@brandarchitect.cc</a>
+                                </p>
+                            </Reveal>
+                        </div>
+                    </section>
+
+                    <footer className="flex flex-wrap items-center justify-between gap-4 bg-brand-ink px-8 py-10 border-t border-brand-chalk/5">
+                        <p className="font-sans text-[0.57rem] uppercase tracking-[0.32em] text-brand-chalk/25">© Brand Architect &nbsp;·&nbsp; brandarchitect.cc</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
