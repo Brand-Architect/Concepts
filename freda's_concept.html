@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freda's — Brand Identity Concept</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#1B3A1F',
+                            cream: '#F5F0E8',
+                            brown: '#8B6343',
+                            gold: '#B8960C',
+                            dark: '#0D1F10',
+                            navy: '#0A192F',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: #F5F0E8;
+            color: #1B3A1F;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* THE GOLD LOGO TECHNIQUE */
+        .gold-logo {
+            background-color: #B8960C;
+            background-image: url('https://www.transparenttextures.com/patterns/gold-dust.png');
+            -webkit-mask-image: url('https://i.ibb.co/57R0x5d/Freda-s.png');
+            mask-image: url('https://i.ibb.co/57R0x5d/Freda-s.png');
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            display: inline-block;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, #8B6343, transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Interactive Swatches */
+        .swatch-group:hover .swatch-item { flex: 1; }
+        .swatch-item:hover { flex: 2.5 !important; }
+    </style>
+</head>
+<body class="selection:bg-brand-gold selection:text-brand-dark">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-sm px-10 py-4 flex justify-between items-center border-b border-white/5">
+        <div class="gold-logo w-32 h-10"></div>
+        <nav class="hidden md:flex gap-8">
+            <a href="#concept" class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/60 hover:text-brand-gold transition-colors">Concept</a>
+            <a href="#critique" class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/60 hover:text-brand-gold transition-colors">Critique</a>
+            <a href="#typography" class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/60 hover:text-brand-gold transition-colors">Typography</a>
+            <a href="#palette" class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/60 hover:text-brand-gold transition-colors">Palette</a>
+        </nav>
+        <a href="mailto:stephen@brandarchitect.cc" class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-gold border border-brand-gold/30 px-4 py-2 rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all">
+            Contact
+        </a>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section id="concept" class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-brand-dark px-10 py-20 text-center">
+        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,rgba(27,58,31,0.6)_0%,transparent_70%),radial-gradient(ellipse_at_20%_80%,rgba(139,99,67,0.2)_0%,transparent_60%)]"></div>
+        
+        <div class="reveal" style="transition-delay: 0.1s;">
+            <p class="mb-14 text-[0.65rem] font-medium uppercase tracking-[0.35em] text-brand-brown">Brand Architect · Concept Proposal · Freda's</p>
+        </div>
+        
+        <div class="reveal" style="transition-delay: 0.3s;">
+            <div class="gold-logo w-[min(520px,80vw)] aspect-[520/200] drop-shadow-[0_20px_60px_rgba(0,0,0,0.6)]"></div>
+        </div>
+        
+        <div class="reveal" style="transition-delay: 0.5s;">
+            <div class="mx-auto my-14 h-[60px] w-px bg-gradient-to-b from-transparent via-brand-brown to-transparent"></div>
+        </div>
+        
+        <div class="reveal" style="transition-delay: 0.7s;">
+            <p class="max-w-[520px] font-serif text-[clamp(1.3rem,2.5vw,1.8rem)] font-light italic leading-relaxed text-brand-cream">
+                Cornish nut butters, handcrafted with integrity — reimagined for a premium global stage.
+            </p>
+        </div>
+        
+        <div class="reveal" style="transition-delay: 0.9s;">
+            <p class="mt-7 text-[0.65rem] uppercase tracking-[0.3em] text-brand-cream/40">Where Heritage Meets Modern Craft</p>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2">
+            <span class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/30">Explore the Vision</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- 2. CRITIQUE SECTION -->
+    <section id="critique" class="mx-auto max-w-[1100px] px-10 py-24">
+        <div class="reveal">
+            <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Opportunity</p>
+            <h2 class="mb-12 font-serif text-[clamp(2rem,4vw,3rem)] leading-[1.15] text-brand-green">
+                A brand with <em class="italic text-brand-brown">Cornish soul</em> — and a digital presence that feels generic.
+            </h2>
+            <div class="mb-10 h-px w-10 bg-brand-brown"></div>
+            <p class="max-w-[620px] font-serif text-[1.15rem] font-light leading-relaxed text-brand-green/75">
+                Freda's isn't just peanut butter. It's a small-batch, handmade product from the coast of Cornwall. Currently, the brand is presented through standard e-commerce patterns that hide its unique provenance. The identity should be as rich as the product itself.
+            </p>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+            <div class="reveal relative overflow-hidden p-11 text-brand-cream bg-brand-green">
+                <div class="absolute left-0 top-0 h-full w-[3px] bg-brand-brown"></div>
+                <span class="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-cream/5 pointer-events-none">01</span>
+                <p class="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">The Existing Mark</p>
+                <p class="font-serif text-[1.15rem] font-light leading-relaxed text-brand-cream/85">The current script logo lacks the "artisan" authority required for a premium product. It feels like a standard template font rather than a bespoke identity that signals quality and heritage.</p>
+            </div>
+            
+            <div class="reveal relative overflow-hidden p-11 text-brand-cream bg-[#152D18]">
+                <div class="absolute left-0 top-0 h-full w-[3px] bg-brand-brown"></div>
+                <span class="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-cream/5 pointer-events-none">02</span>
+                <p class="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">Visual Clutter</p>
+                <p class="font-serif text-[1.15rem] font-light leading-relaxed text-brand-cream/85">The homepage is overwhelmed by discount banners and competing calls to action. A premium brand should lead with its story and quality, not with a bargain-first mentality.</p>
+            </div>
+            
+            <div class="reveal relative overflow-hidden p-11 text-brand-cream bg-[#102413]">
+                <div class="absolute left-0 top-0 h-full w-[3px] bg-brand-brown"></div>
+                <span class="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-cream/5 pointer-events-none">03</span>
+                <p class="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">Buried Heritage</p>
+                <p class="font-serif text-[1.15rem] font-light leading-relaxed text-brand-cream/85">The Cornish origin is a massive USP, but it's secondary to sales-driven messaging. The brand needs to "own" its location and the handcrafted nature of its process.</p>
+            </div>
+            
+            <div class="reveal relative overflow-hidden p-11 text-brand-cream bg-[#0B1B0D]">
+                <div class="absolute left-0 top-0 h-full w-[3px] bg-brand-brown"></div>
+                <span class="absolute right-6 top-2.5 font-serif text-8xl font-light leading-none text-brand-cream/5 pointer-events-none">04</span>
+                <p class="mb-4 text-[0.65rem] uppercase tracking-[0.3em] text-brand-brown">Product Presentation</p>
+                <p class="font-serif text-[1.15rem] font-light leading-relaxed text-brand-cream/85">Inconsistent photography and generic layouts don't reflect the premium price point. The presentation should feel as considered as the ingredients inside the jar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. LOGO COMPARISON -->
+    <section class="bg-brand-navy px-10 py-32 text-brand-cream overflow-hidden">
+        <div class="mx-auto max-w-[1100px]">
+            <div class="reveal">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Evolution</p>
+                <h2 class="mb-16 font-serif text-[clamp(2rem,4vw,3rem)] leading-tight text-brand-cream">
+                    From <em class="italic text-brand-brown">generic</em> to <em class="italic text-brand-brown">iconic</em>.
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                <div class="reveal flex flex-col items-center gap-8 p-12 bg-white/5 rounded-2xl border border-white/10">
+                    <p class="text-[0.55rem] uppercase tracking-[0.3em] text-brand-brown">Current Identity</p>
+                    <div class="h-32 flex items-center justify-center">
+                        <img 
+                            src="https://fredas.co.uk/cdn/shop/files/Fredas_Logo_Black_Horizontal_200x.png?v=1655214041" 
+                            alt="Current Freda's Logo" 
+                            class="max-w-[200px] opacity-50 grayscale invert"
+                        />
+                    </div>
+                    <p class="text-[0.7rem] font-serif italic text-brand-cream/40 text-center">Functional but lacks distinction.</p>
+                </div>
+
+                <div class="reveal flex flex-col items-center gap-8 p-12 bg-brand-gold/10 rounded-2xl border border-brand-gold/20">
+                    <p class="text-[0.55rem] uppercase tracking-[0.3em] text-brand-gold">Proposed Identity</p>
+                    <div class="h-32 flex items-center justify-center w-full">
+                        <div class="gold-logo w-full h-full max-w-[280px]"></div>
+                    </div>
+                    <p class="text-[0.7rem] font-serif italic text-brand-gold/60 text-center">Bold, authoritative, and timeless.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. STORY SECTION -->
+    <section class="bg-brand-green px-10 py-32 text-brand-cream">
+        <div class="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-20 md:grid-cols-2">
+            <div class="flex flex-col gap-10">
+                <div class="reveal border-l border-brand-cream/20 pl-7">
+                    <div class="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">100%</div>
+                    <div class="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Natural Ingredients</div>
+                </div>
+                <div class="reveal border-l border-brand-cream/20 pl-7">
+                    <div class="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">TR</div>
+                    <div class="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Hand-Roasted in Cornwall</div>
+                </div>
+                <div class="reveal border-l border-brand-cream/20 pl-7">
+                    <div class="font-serif text-[clamp(3rem,6vw,4.5rem)] font-light leading-none">0</div>
+                    <div class="mt-2 text-[0.6rem] uppercase tracking-[0.3em] text-brand-brown">Palm Oil or Refined Sugar</div>
+                </div>
+            </div>
+
+            <div class="reveal font-serif text-[1.2rem] font-light leading-relaxed text-brand-cream/85">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Cornish Craft</p>
+                <p class="mb-6">
+                    Freda's was born from a desire for a better nut butter. No shortcuts, no fillers, just the best ingredients roasted to perfection in the Cornish sea air. <strong class="font-medium text-brand-cream">That integrity deserves an identity to match.</strong>
+                </p>
+                <p class="mb-6">
+                    The new identity moves away from the "cottage industry" look and towards a "modern classic" aesthetic. It's a brand that feels at home in a high-end deli in London or a surf shop in St Ives.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TYPOGRAPHY -->
+    <section id="typography" class="bg-brand-cream px-10 py-32">
+        <div class="mx-auto max-w-[1100px]">
+            <div class="reveal">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">Typography</p>
+                <h2 class="mb-6 font-serif text-[clamp(2rem,4vw,3rem)] leading-tight text-brand-green">
+                    Type that <em class="italic text-brand-brown">signals</em> standing.
+                </h2>
+                <p class="mb-16 max-w-[600px] font-serif text-[1.15rem] font-light leading-relaxed text-brand-green/75">
+                    Premium brands don't announce themselves. They signal. Typography is the first signal — before a word is read.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+                <div class="reveal bg-brand-green p-14 text-brand-cream">
+                    <p class="mb-4 text-[0.55rem] uppercase tracking-[0.4em] text-brand-brown">Display — Cormorant Garamond</p>
+                    <p class="font-serif text-[clamp(2rem,4vw,3.2rem)] font-light leading-tight">
+                        Handcrafted nut butters<br /><em class="italic">from the Cornish coast.</em>
+                    </p>
+                </div>
+                <div class="reveal bg-[#2C5C32] p-14 text-brand-cream">
+                    <p class="mb-4 text-[0.55rem] uppercase tracking-[0.4em] text-brand-brown">Secondary — Montserrat</p>
+                    <p class="font-sans text-[clamp(1.4rem,3vw,2.2rem)] font-light leading-tight uppercase">
+                        CORNISH<br />PEANUT BUTTER
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PALETTE -->
+    <section id="palette" class="bg-brand-dark px-10 py-32 text-brand-cream">
+        <div class="mx-auto max-w-[1100px]">
+            <div class="reveal">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">Colour Palette</p>
+                <h2 class="font-serif text-[clamp(2rem,4vw,3rem)] leading-tight">
+                    Drawn from the <em class="italic text-brand-brown">coast</em> and the <em class="italic text-brand-brown">roast</em>.
+                </h2>
+            </div>
+
+            <div class="mt-14 flex h-[180px] gap-0.5 swatch-group">
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-all duration-500 bg-brand-navy">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr]">Cornish Navy</span>
+                </div>
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-all duration-500 bg-brand-brown">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr]">Toasted Nut</span>
+                </div>
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-all duration-500 bg-brand-cream">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr] text-brand-green">Parchment</span>
+                </div>
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-all duration-500 bg-brand-gold">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr]">Harvest Gold</span>
+                </div>
+                <div class="swatch-item relative flex flex-1 items-end overflow-hidden p-5 transition-all duration-500 bg-brand-green">
+                    <span class="rotate-180 text-[0.6rem] uppercase tracking-[0.25em] opacity-60 [writing-mode:vertical-lr]">Forest Green</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONCEPT SECTION -->
+    <section class="bg-brand-cream px-10 py-32">
+        <div class="mx-auto max-w-[1100px]">
+            <div class="reveal">
+                <p class="mb-5 text-[0.6rem] uppercase tracking-[0.4em] text-brand-brown">The Proposed Mark</p>
+                <h2 class="mb-12 font-serif text-[clamp(2rem,4vw,3rem)] leading-tight text-brand-green">
+                    A mark that <em class="italic text-brand-brown">pours</em>. A name that <em class="italic text-brand-brown">flows</em>.
+                </h2>
+            </div>
+
+            <div class="mt-14 grid grid-cols-1 gap-0.5 sm:grid-cols-2">
+                <div class="reveal flex flex-col items-center justify-center gap-8 border border-brand-green/10 bg-brand-cream py-20 px-14">
+                    <img src="https://i.ibb.co/57R0x5d/Freda-s.png" alt="Parchment" class="w-[min(320px,70%)]">
+                    <p class="text-[0.55rem] uppercase tracking-[0.35em] opacity-40">Parchment</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 bg-brand-navy py-20 px-14">
+                    <div class="gold-logo w-[min(320px,70%)] aspect-[520/200]"></div>
+                    <p class="text-[0.55rem] uppercase tracking-[0.35em] text-brand-cream opacity-40">Navy</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 bg-brand-green py-20 px-14">
+                    <div class="gold-logo w-[min(320px,70%)] aspect-[520/200]"></div>
+                    <p class="text-[0.55rem] uppercase tracking-[0.35em] text-brand-cream opacity-40">Forest Green</p>
+                </div>
+                <div class="reveal flex flex-col items-center justify-center gap-8 bg-[#D4C4A8] py-20 px-14">
+                    <img src="https://i.ibb.co/57R0x5d/Freda-s.png" alt="Kraft" class="w-[min(320px,70%)]">
+                    <p class="text-[0.55rem] uppercase tracking-[0.35em] opacity-40">Kraft</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CTA SECTION -->
+    <section class="bg-brand-green px-10 py-36 text-center">
+        <div class="mx-auto max-w-[680px]">
+            <div class="reveal">
+                <h2 class="mb-8 font-serif text-[clamp(2.2rem,5vw,3.5rem)] font-light leading-tight text-brand-cream">
+                    This is what <em class="italic text-brand-brown">Freda's</em><br />could look like.
+                </h2>
+                <div class="mx-auto mb-12 h-px w-10 bg-brand-brown"></div>
+                <p class="mx-auto mb-14 max-w-[480px] text-[0.8rem] font-light tracking-wider leading-relaxed text-brand-cream/65">
+                    The concept above represents one considered direction. A full brand identity package includes primary and secondary logomarks, guidelines, colour system, typography, and packaging direction.
+                </p>
+                <div class="flex flex-col items-center gap-6">
+                    <a href="mailto:stephen@brandarchitect.cc" class="group flex items-center gap-3 text-brand-brown no-underline border-b border-brand-brown/30 transition-all hover:border-brand-brown pb-1">
+                        <span class="font-serif text-[1.1rem] italic tracking-wider">stephen@brandarchitect.cc</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark px-10 py-10 border-t border-white/5 text-center">
+        <p class="text-[0.6rem] uppercase tracking-[0.3em] text-brand-cream/30">
+            © Brand Architect · <strong class="text-brand-brown">brandarchitect.cc</strong>
+        </p>
+    </footer>
+
+    <!-- Vanilla JS for Reveal Effect -->
+    <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
