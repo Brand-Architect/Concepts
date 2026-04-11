@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucy's Dressings | Premium Editorial Experience</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (v3 CDN for standalone compatibility) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- React & ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Framer Motion -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: '#8BA88E',
+                        'sage-dark': '#2C3A2E',
+                        cream: '#F9F7F2',
+                        ink: '#1A1A1A',
+                        gold: '#C5A059',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['"Playfair Display"', 'serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F9F7F2;
+            color: #2C3A2E;
+            overflow-x: hidden;
+        }
+
+        .glass-nav {
+            background: rgba(249, 247, 242, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        .image-reveal {
+            overflow: hidden;
+        }
+        .image-reveal img {
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .image-reveal:hover img {
+            transform: scale(1.05);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F7F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8BA88E;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        
+        // Handle different possible global names for Framer Motion
+        const MotionLib = window.Motion || window.framerMotion || window.FramerMotion;
+        if (!MotionLib) {
+            console.error("Framer Motion library not found. Please check the CDN link.");
+        }
+        const { motion, AnimatePresence, useScroll, useTransform, useInView } = MotionLib || {};
+
+        const Reveal = ({ children, className, delay = 0, y = 20 }) => {
+            const ref = useRef(null);
+            const isInView = useInView ? useInView(ref, { once: true, margin: "-10% 0px" }) : true;
+
+            if (!motion) return <div className={className}>{children}</div>;
+
+            return (
+                <motion.div
+                    ref={ref}
+                    initial={{ opacity: 0, y }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay }}
+                    className={className}
+                >
+                    {children}
+                </motion.div>
+            );
+        };
+
+        const SectionTitle = ({ subtitle, title, dark = false }) => (
+            <Reveal className="mb-16">
+                <span className={`text-[0.7rem] uppercase tracking-[0.5em] font-bold ${dark ? 'text-sage' : 'text-sage'} mb-4 block`}>
+                    {subtitle}
+                </span>
+                <h2 className={`text-4xl md:text-6xl font-serif leading-tight ${dark ? 'text-cream' : 'text-sage-dark'}`}>
+                    {title}
+                </h2>
+            </Reveal>
+        );
+
+        const App = () => {
+            const [isMenuOpen, setIsMenuOpen] = useState(false);
+            
+            // Safe access to scroll hooks
+            const scrollYProgress = useScroll ? useScroll().scrollYProgress : null;
+            const y = useTransform && scrollYProgress ? useTransform(scrollYProgress, [0, 1], [0, -100]) : 0;
+
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, []);
+
+            return (
+                <div className="font-sans selection:bg-sage selection:text-white">
+                    {/* NAVIGATION */}
+                    <nav className="fixed top-0 left-0 w-full z-50 glass-nav border-b border-sage/10 px-6 md:px-12 py-6 flex justify-between items-center">
+                        <div className="flex gap-8 items-center">
+                            <button onClick={() => setIsMenuOpen(true)} className="hover:text-sage transition-colors">
+                                <i data-lucide="menu" className="w-5 h-5"></i>
+                            </button>
+                            <div className="hidden md:flex gap-8 text-[0.6rem] uppercase tracking-widest font-bold">
+                                <a href="#" className="hover:text-sage transition-colors">Shop</a>
+                                <a href="#" className="hover:text-sage transition-colors">Stockists</a>
+                                <a href="#" className="hover:text-sage transition-colors">Recipes</a>
+                            </div>
+                        </div>
+                        
+                        <div className="absolute left-1/2 -translate-x-1/2">
+                            <img src="https://i.ibb.co/fzVkYgKF/Lucy-s-logo.png" alt="Lucy's" className="h-8 w-auto" referrerPolicy="no-referrer" />
+                        </div>
+
+                        <div className="flex gap-6 items-center">
+                            <button className="hover:text-sage transition-colors">
+                                <i data-lucide="shopping-bag" className="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </nav>
+
+                    {/* MOBILE MENU */}
+                    {AnimatePresence && (
+                        <AnimatePresence>
+                            {isMenuOpen && (
+                                <motion.div 
+                                    initial={{ x: '-100%' }}
+                                    animate={{ x: 0 }}
+                                    exit={{ x: '-100%' }}
+                                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                    className="fixed inset-0 z-[60] bg-sage-dark text-cream p-12 flex flex-col justify-between"
+                                >
+                                    <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8">
+                                        <i data-lucide="x" className="w-8 h-8"></i>
+                                    </button>
+                                    
+                                    <div className="flex flex-col gap-8 mt-20">
+                                        {['The Collection', 'Our Story', 'Stockists', 'Inspiration', 'Contact'].map((item, i) => (
+                                            <motion.a 
+                                                key={item}
+                                                initial={{ opacity: 0, x: -20 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: 0.2 + (i * 0.1) }}
+                                                href="#" 
+                                                className="text-5xl font-serif hover:italic hover:pl-4 transition-all"
+                                            >
+                                                {item}
+                                            </motion.a>
+                                        ))}
+                                    </div>
+
+                                    <div className="flex gap-8 border-t border-cream/10 pt-8">
+                                        <i data-lucide="instagram" className="w-5 h-5"></i>
+                                        <i data-lucide="facebook" className="w-5 h-5"></i>
+                                        <i data-lucide="mail" className="w-5 h-5"></i>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    )}
+                    {!AnimatePresence && isMenuOpen && (
+                        <div className="fixed inset-0 z-[60] bg-sage-dark text-cream p-12 flex flex-col justify-between">
+                            <button onClick={() => setIsMenuOpen(false)} className="absolute top-8 right-8">
+                                <i data-lucide="x" className="w-8 h-8"></i>
+                            </button>
+                            <div className="flex flex-col gap-8 mt-20">
+                                {['The Collection', 'Our Story', 'Stockists', 'Inspiration', 'Contact'].map((item) => (
+                                    <a key={item} href="#" className="text-5xl font-serif hover:italic hover:pl-4 transition-all">{item}</a>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* HERO SECTION */}
+                    <header className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
+                        <div className="absolute inset-0 z-0">
+                            <img 
+                                src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&q=80&w=2000" 
+                                className="w-full h-full object-cover opacity-20 grayscale"
+                                alt="Background"
+                                referrerPolicy="no-referrer"
+                            />
+                        </div>
+                        
+                        <div className="relative z-10 text-center px-6">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                                className="animate-float"
+                            >
+                                <img 
+                                    src="https://i.ibb.co/fzVkYgKF/Lucy-s-logo.png" 
+                                    alt="Lucy's Dressings Logo" 
+                                    className="w-64 md:w-[450px] mx-auto mb-12"
+                                    referrerPolicy="no-referrer"
+                                />
+                            </motion.div>
+                            
+                            <Reveal delay={0.5}>
+                                <h1 className="text-xl md:text-2xl font-serif italic text-sage-dark tracking-wide max-w-2xl mx-auto leading-relaxed">
+                                    Artisanal dressings, crafted in small batches to elevate every meal.
+                                </h1>
+                            </Reveal>
+
+                            <Reveal delay={0.8} className="mt-12">
+                                <button className="group flex items-center gap-4 mx-auto text-[0.7rem] uppercase tracking-[0.4em] font-bold border-b border-sage/30 pb-2 hover:border-sage transition-all">
+                                    Explore the Collection
+                                    <i data-lucide="arrow-right" className="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                                </button>
+                            </Reveal>
+                        </div>
+
+                        <div className="absolute bottom-12 left-12 hidden lg:block">
+                            <span className="vertical-text text-[0.6rem] uppercase tracking-[0.5em] text-sage font-bold">
+                                Est. London 2011
+                            </span>
+                        </div>
+                    </header>
+
+                    {/* COLLECTION SECTION */}
+                    <section className="py-32 px-6 md:px-12 bg-cream">
+                        <div className="max-w-7xl mx-auto">
+                            <SectionTitle 
+                                subtitle="The Collection" 
+                                title="Dressings for the Discerning Palette" 
+                            />
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                                {[
+                                    { 
+                                        name: "Classic Balsamic", 
+                                        desc: "A rich, velvety blend of aged Modena balsamic and cold-pressed oils.",
+                                        img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=800",
+                                        color: "bg-[#4A3728]"
+                                    },
+                                    { 
+                                        name: "Lemon & Caper", 
+                                        desc: "Bright, zesty, and perfectly balanced with the saltiness of Mediterranean capers.",
+                                        img: "https://images.unsplash.com/photo-1590502593747-42a996133562?auto=format&fit=crop&q=80&w=800",
+                                        color: "bg-[#E2C044]"
+                                    },
+                                    { 
+                                        name: "Ginger & Soy", 
+                                        desc: "An aromatic fusion of fresh ginger, toasted sesame, and premium tamari.",
+                                        img: "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=800",
+                                        color: "bg-[#8B4513]"
+                                    }
+                                ].map((product, i) => (
+                                    <Reveal key={product.name} delay={i * 0.2} className="group cursor-pointer">
+                                        <div className="relative aspect-[4/5] mb-8 image-reveal rounded-2xl overflow-hidden">
+                                            <img 
+                                                src={product.img} 
+                                                alt={product.name} 
+                                                className="w-full h-full object-cover"
+                                                referrerPolicy="no-referrer"
+                                            />
+                                            <div className={`absolute inset-0 ${product.color} opacity-0 group-hover:opacity-20 transition-opacity duration-700`}></div>
+                                        </div>
+                                        <h3 className="font-serif text-2xl mb-2">{product.name}</h3>
+                                        <p className="text-sm text-sage-dark/60 leading-relaxed mb-6">{product.desc}</p>
+                                        <button className="text-[0.6rem] uppercase tracking-widest font-bold border-b border-sage/20 pb-1 group-hover:border-sage transition-all">
+                                            Shop Now
+                                        </button>
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* WEBSITE AUDIT SECTION */}
+                    <section className="py-32 px-6 md:px-12 bg-white border-t border-sage/10">
+                        <div className="max-w-7xl mx-auto">
+                            <SectionTitle 
+                                subtitle="The Opportunity" 
+                                title="A Brand with Heritage — A Digital Presence that Feels Generic" 
+                            />
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                {[
+                                    {
+                                        title: "Generic Templates",
+                                        desc: "The current site uses standard e-commerce patterns that fail to signal the premium quality of the product. It feels like a commodity rather than a luxury artisanal choice."
+                                    },
+                                    {
+                                        title: "Visual Clutter",
+                                        desc: "Competing calls to action and inconsistent typography create a noisy experience that distracts from the product's provenance and story."
+                                    },
+                                    {
+                                        title: "Buried Heritage",
+                                        desc: "The story of Lucy's — the London kitchen, the small batches — is the brand's greatest asset, yet it's buried under functional sales messaging."
+                                    }
+                                ].map((box, i) => (
+                                    <Reveal key={i} delay={i * 0.2} className="p-10 bg-cream rounded-3xl border border-sage/5">
+                                        <h4 className="font-serif text-xl mb-4 text-sage-dark">{box.title}</h4>
+                                        <p className="text-sm text-sage-dark/60 leading-relaxed">{box.desc}</p>
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* TYPOGRAPHY & PALETTE SECTION */}
+                    <section className="py-32 px-6 md:px-12 bg-cream">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+                                {/* FONTS */}
+                                <div>
+                                    <SectionTitle 
+                                        subtitle="Typography" 
+                                        title="The Voice of Authority" 
+                                    />
+                                    <Reveal delay={0.3} className="space-y-12">
+                                        <div className="border-l-2 border-sage pl-8">
+                                            <h3 className="font-serif text-5xl mb-4">Classical Serif</h3>
+                                            <p className="text-sage-dark/60 leading-relaxed">
+                                                This typeface was chosen for its "Artisanal Authority." It signals heritage and handmade quality, moving the brand away from a cottage-industry look and towards a modern classic aesthetic that feels at home in the world's most prestigious food halls.
+                                            </p>
+                                        </div>
+                                        <div className="border-l-2 border-sage pl-8">
+                                            <h3 className="font-sans text-3xl font-light uppercase tracking-widest mb-4">Geometric Sans</h3>
+                                            <p className="text-sage-dark/60 leading-relaxed">
+                                                A clean, geometric sans-serif provides "Modern Precision." It ensures the brand feels contemporary and trustworthy, providing a sharp, professional counterpoint to the organic nature of the ingredients.
+                                            </p>
+                                        </div>
+                                    </Reveal>
+                                </div>
+
+                                {/* PALETTE */}
+                                <div>
+                                    <SectionTitle 
+                                        subtitle="The Palette" 
+                                        title="Natural Sophistication" 
+                                    />
+                                    <Reveal delay={0.4} className="grid grid-cols-2 gap-4">
+                                        <div className="aspect-square bg-sage rounded-full animate-float"></div>
+                                        <div className="aspect-square bg-sage-dark rounded-full animate-float [animation-delay:1s]"></div>
+                                        <div className="aspect-square bg-gold rounded-full animate-float [animation-delay:2s]"></div>
+                                        <div className="aspect-square bg-ink rounded-full animate-float [animation-delay:1.5s]"></div>
+                                    </Reveal>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* STOCKISTS SECTION */}
+                    <section className="py-32 px-6 md:px-12 bg-cream overflow-hidden">
+                        <div className="max-w-7xl mx-auto">
+                            <SectionTitle 
+                                subtitle="Where to Find Us" 
+                                title="Proudly Stocked in the World's Finest Food Halls" 
+                            />
+                            
+                            <div className="grid grid-cols-2 md:grid-cols-5 gap-12 items-center opacity-40 grayscale">
+                                {['Harrods', 'Waitrose', 'Whole Foods', 'Selfridges', 'Ocado'].map((stockist, i) => (
+                                    <Reveal key={stockist} delay={i * 0.1} className="text-center font-serif text-2xl tracking-widest">
+                                        {stockist}
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* STORY SECTION - SPLIT LAYOUT */}
+                    <section className="relative min-h-screen flex flex-col md:flex-row">
+                        <div className="w-full md:w-1/2 h-[50vh] md:h-screen sticky top-0">
+                            <img 
+                                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1200" 
+                                className="w-full h-full object-cover"
+                                alt="Kitchen"
+                                referrerPolicy="no-referrer"
+                            />
+                        </div>
+                        <div className="w-full md:w-1/2 bg-sage-dark text-cream p-12 md:p-24 flex flex-col justify-center">
+                            <Reveal>
+                                <span className="text-[0.7rem] uppercase tracking-[0.5em] text-sage font-bold mb-8 block">Our Story</span>
+                                <h2 className="text-5xl md:text-7xl font-serif mb-12 leading-tight">The Art of the Dressing.</h2>
+                                <div className="space-y-8 text-cream/70 leading-relaxed text-lg font-light">
+                                    <p>
+                                        It began in a small London kitchen, with a simple belief: that a dressing shouldn't just be an afterthought, but the heart of the meal.
+                                    </p>
+                                    <p>
+                                        Lucy started crafting her recipes using only the finest ingredients—cold-pressed oils, aged vinegars, and fresh herbs. No shortcuts, no artificial preservatives. Just pure, vibrant flavour.
+                                    </p>
+                                    <p>
+                                        Today, while we've grown, our philosophy remains unchanged. Every bottle is a testament to the beauty of small-batch production and the uncompromising pursuit of quality.
+                                    </p>
+                                </div>
+                                <button className="mt-16 group flex items-center gap-4 text-[0.7rem] uppercase tracking-[0.4em] font-bold border-b border-sage/30 pb-2 hover:border-sage transition-all">
+                                    Read the Full Story
+                                    <i data-lucide="arrow-right" className="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                                </button>
+                            </Reveal>
+                        </div>
+                    </section>
+
+                    {/* INSPIRATION SECTION */}
+                    <section className="py-32 px-6 md:px-12 bg-white">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+                                <SectionTitle 
+                                    subtitle="Inspiration" 
+                                    title="Beyond the Salad Bowl" 
+                                />
+                                <Reveal className="md:mb-16">
+                                    <p className="text-sage-dark/60 max-w-md text-right">
+                                        Discover how our dressings can transform your cooking, from marinades to glazes and everything in between.
+                                    </p>
+                                </Reveal>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <Reveal className="relative aspect-video rounded-3xl overflow-hidden group">
+                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" alt="Recipe" referrerPolicy="no-referrer" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-12">
+                                        <h3 className="text-white font-serif text-3xl mb-4">Ginger & Sesame Glazed Salmon</h3>
+                                        <button className="text-white/80 text-[0.6rem] uppercase tracking-widest font-bold border-b border-white/20 pb-1 w-fit hover:border-white transition-all">View Recipe</button>
+                                    </div>
+                                </Reveal>
+                                <Reveal delay={0.2} className="relative aspect-video rounded-3xl overflow-hidden group">
+                                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" alt="Recipe" referrerPolicy="no-referrer" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-12">
+                                        <h3 className="text-white font-serif text-3xl mb-4">The Ultimate French Vinaigrette Salad</h3>
+                                        <button className="text-white/80 text-[0.6rem] uppercase tracking-widest font-bold border-b border-white/20 pb-1 w-fit hover:border-white transition-all">View Recipe</button>
+                                    </div>
+                                </Reveal>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* LOGO VERSATILITY SECTION */}
+                    <section className="py-32 px-6 md:px-12 bg-white">
+                        <div className="max-w-7xl mx-auto">
+                            <SectionTitle 
+                                subtitle="Versatility" 
+                                title="A Mark Designed for Every Touchpoint" 
+                            />
+                            
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {[
+                                    { bg: 'bg-sage', logo: 'brightness-0 invert' },
+                                    { bg: 'bg-cream', logo: '' },
+                                    { bg: 'bg-sage-dark', logo: 'brightness-0 invert' },
+                                    { bg: 'bg-gold', logo: 'brightness-0' }
+                                ].map((variant, i) => (
+                                    <Reveal key={i} delay={i * 0.1} className={`${variant.bg} aspect-square flex items-center justify-center p-12 rounded-2xl border border-sage/5`}>
+                                        <img 
+                                            src="https://i.ibb.co/fzVkYgKF/Lucy-s-logo.png" 
+                                            alt="Lucy's Logo" 
+                                            className={`w-full h-auto ${variant.logo}`}
+                                            referrerPolicy="no-referrer"
+                                        />
+                                    </Reveal>
+                                ))}
+                            </div>
+                            
+                            <Reveal delay={0.5} className="mt-16 text-center">
+                                <p className="text-sm text-sage-dark/60 font-serif italic max-w-2xl mx-auto">
+                                    The new Lucy's mark is engineered for maximum flexibility—from high-contrast packaging to subtle, tone-on-tone digital applications. It maintains its integrity and premium feel across the entire brand palette.
+                                </p>
+                            </Reveal>
+                        </div>
+                    </section>
+
+                    {/* BRAND EVOLUTION / LOGO COMPARISON */}
+                    <section className="py-32 px-6 md:px-12 bg-sage-dark text-cream">
+                        <div className="max-w-7xl mx-auto text-center">
+                            <SectionTitle 
+                                subtitle="The Evolution" 
+                                title="From Functional to Iconic" 
+                                dark
+                            />
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-20">
+                                <Reveal className="p-12 bg-cream/5 rounded-3xl border border-cream/10">
+                                    <span className="text-[0.6rem] uppercase tracking-[0.4em] text-sage mb-8 block">Current Identity</span>
+                                    <div className="h-32 flex items-center justify-center opacity-40 grayscale invert">
+                                        <img 
+                                            src="https://lucysdressings.co.uk/cdn/shop/files/LUCYS_BRAND_LOGO_RGB_fe8b1a13-50a5-4ff1-9962-0190a6f4f958_1000x1000.png?v=1614306548" 
+                                            alt="Current Logo" 
+                                            className="h-16 w-auto"
+                                            referrerPolicy="no-referrer"
+                                        />
+                                    </div>
+                                    <p className="mt-8 text-xs text-cream/40 italic">Functional, but lacks the authority of a premium brand.</p>
+                                </Reveal>
+
+                                <Reveal delay={0.2} className="p-12 bg-sage/10 rounded-3xl border border-sage/20">
+                                    <span className="text-[0.6rem] uppercase tracking-[0.4em] text-sage mb-8 block">Proposed Identity</span>
+                                    <div className="h-32 flex items-center justify-center">
+                                        <img 
+                                            src="https://i.ibb.co/fzVkYgKF/Lucy-s-logo.png" 
+                                            alt="Proposed Logo" 
+                                            className="h-24 w-auto"
+                                            referrerPolicy="no-referrer"
+                                        />
+                                    </div>
+                                    <p className="mt-8 text-xs text-sage italic">Bold, timeless, and designed for the global stage.</p>
+                                </Reveal>
+                            </div>
+
+                            <Reveal delay={0.4} className="mt-24 max-w-2xl mx-auto">
+                                <h3 className="font-serif text-3xl mb-6 italic">"This could be the new brand identity to take Lucy's to the next level."</h3>
+                                <div className="flex flex-col items-center gap-4">
+                                    <a href="mailto:stephen@brandarchitect.cc" className="text-sage font-bold tracking-widest text-sm border-b border-sage/30 pb-1 hover:border-sage transition-all">
+                                        stephen@brandarchitect.cc
+                                    </a>
+                                    <p className="text-[0.8rem] uppercase tracking-[0.3em] text-sage font-bold mt-6">Brand Architect: Where Brands Are Built with Purpose.</p>
+                                </div>
+                            </Reveal>
+                        </div>
+                    </section>
+
+                    {/* FOOTER */}
+                    <footer className="bg-cream border-t border-sage/10 py-24 px-6 md:px-12">
+                        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+                            <div className="col-span-1 md:col-span-2">
+                                <img src="https://i.ibb.co/fzVkYgKF/Lucy-s-logo.png" alt="Lucy's" className="h-12 w-auto mb-8" referrerPolicy="no-referrer" />
+                                <p className="text-sage-dark/60 max-w-sm leading-relaxed">
+                                    Crafting award-winning dressings and condiments in the heart of London since 2011.
+                                </p>
+                            </div>
+                            <div>
+                                <h4 className="text-[0.7rem] uppercase tracking-widest font-bold mb-8">Navigation</h4>
+                                <ul className="space-y-4 text-sm text-sage-dark/60">
+                                    <li><a href="#" className="hover:text-sage transition-colors">Shop All</a></li>
+                                    <li><a href="#" className="hover:text-sage transition-colors">Our Story</a></li>
+                                    <li><a href="#" className="hover:text-sage transition-colors">Stockists</a></li>
+                                    <li><a href="#" className="hover:text-sage transition-colors">Recipes</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 className="text-[0.7rem] uppercase tracking-widest font-bold mb-8">Contact</h4>
+                                <ul className="space-y-4 text-sm text-sage-dark/60">
+                                    <li className="flex items-center gap-3"><i data-lucide="mail" className="w-4 h-4"></i> hello@lucysdressings.co.uk</li>
+                                    <li className="flex items-center gap-3"><i data-lucide="map-pin" className="w-4 h-4"></i> London, United Kingdom</li>
+                                    <li className="flex gap-6 mt-8">
+                                        <i data-lucide="instagram" className="w-5 h-5 hover:text-sage cursor-pointer transition-colors"></i>
+                                        <i data-lucide="facebook" className="w-5 h-5 hover:text-sage cursor-pointer transition-colors"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-sage/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[0.6rem] uppercase tracking-widest text-sage-dark/40 font-medium">
+                            <div className="flex flex-col items-center md:items-start gap-1">
+                                <span>&copy; 2026 Lucy's Dressings. All rights reserved.</span>
+                                <span className="text-sage font-bold">Brand Architect: Where Brands Are Built with Purpose.</span>
+                            </div>
+                            <div className="flex gap-8">
+                                <a href="#" className="hover:text-sage transition-colors">Privacy Policy</a>
+                                <a href="#" className="hover:text-sage transition-colors">Terms of Service</a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
